@@ -1,47 +1,16 @@
-# Matt's Lidar Branch
+# This is a sample Python script.
 
-# Given by client:
-
-# start of laser scan code
-from sensor_msgs.msg import LaserScan
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-class LaserListener:
-
-    def __init__(self):
-        self.laserSub = rospy.Subscriber("/leddar/leddarData", LaserScan, self.laser_callback, queue_size=1)
-        self.laserRanges = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-
-    def laser_callback(self, msg):
-        # type: (LaserScan) -> None
-        self.laserRanges = msg.ranges
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-# end of laser scan code access laserRanges for an array of all measured distances from the laser sensors
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print_hi('PyCharm')
 
-print(laserRanges)
-
-
-# Things that might be helpful:
-
-# import lidar library
-import ydlidar
-
-# allows the lidar to be referred to as laser
-laser = ydlidar.CYdLidar()
-
-# possible lidar properties
-laser.setlidaropt(ydlidar.LidarPropSerialPort, port)
-laser.setlidaropt(ydlidar.LidarPropSerialBaudrate, 512000)
-laser.setlidaropt(ydlidar.LidarPropLidarType, ydlidar.TYPE_TOF)
-laser.setlidaropt(ydlidar.LidarPropDeviceType, ydlidar.YDLIDAR_TYPE_SERIAL)
-laser.setlidaropt(ydlidar.LidarPropScanFrequency, 10.0)
-laser.setlidaropt(ydlidar.LidarPropSampleRate, 20)
-laser.setlidaropt(ydlidar.LidarPropSingleChannel, False)
-
-# makes sure lidar works
-r = laser.doProcessSimple(scan)
-if r:
-    print("Scan received[", scan.stamp, "]:", scan.points.size(), "ranges is [", 1.0 / scan.config.scan_time, "]Hz")
-else:
-    print("Failed to get Lidar Data.")
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
