@@ -23,10 +23,7 @@ def main():
         sleep(0.01)
 
         #run dijkstra's algorithm
-        #after dijkstra's, start moving again
-         left_side_speed = 1
-         right_side_speed = 1     
-         rover.send_command(left_side_speed, right_side_speed)
+        import Dijkstra 
 
 if __name__ == "__main__":
     main()
