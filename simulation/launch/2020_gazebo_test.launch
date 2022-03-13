@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="simple_arm" default="false"/>
+    <include file="$(find simulation)/launch/gazebo.launch">
+        <arg name="simple_arm" value="$(arg simple_arm)"/>
+    </include>
+<!--    <include file="$(find qset_launch)/launch/ekf_2020.launch"/> -->
+
+<!--	<include file="$(find localization)/launch/localization.launch" if="false">
+		<arg name="version" value="simple_ekf"/>
+		<arg name="publish_tf_transform" value="true"/>
+</include> -->
+<node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_robot_steering"/>
+</launch>

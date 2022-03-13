@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="qset_rover">
+
+<xacro:property name="width" value="0.2" />
+<xacro:property name="bodylen" value="0.6" />
+<link name="base_link">
+<visual>
+    <geometry>
+        <cylinder radius="${width}" length="${bodylen}"/>
+    </geometry>
+    <material name="blue"/>
+</visual>
+<collision>
+    <geometry>
+        <cylinder radius="${width}" length="${bodylen}"/>
+    </geometry>
+</collision>
+</link>
+</robot>

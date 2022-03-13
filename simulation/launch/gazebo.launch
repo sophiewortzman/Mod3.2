@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="model" default="$(find simulation)/models/qset_rover.urdf.xacro"/>
+    <arg name="world" default=""/>
+    <arg name="simple_arm" default="false"/>
+
+    <env name="GAZEBO_RESOURCE_PATH" value="$(env HOME)" if="$(eval arg('world') != '')"/>
+	
+
+
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+	<arg name="world_name" value="$(arg world)"/>
+    </include>
+
+    <rosparam command="load"
+              file="$(find simulation)/params/gazebo.yaml"
+               />
+
+    <!-- push robot_description to factory and spawn robot in gazebo -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+          args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+<!--diff_drive_controller-->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner"
+          args="joint_state_controller
+          front_left_wheel_joint_controller
+          back_left_wheel_joint_controller
+          front_right_wheel_joint_controller
+          back_right_wheel_joint_controller
+          shoulder_joint_controller
+          elbow_joint_controller
+          wrist_pitch_joint_controller
+          wrist_roll_joint_controller
+          --shutdown-timeout 3"
+    if="$(arg simple_arm)">
+
+    </node>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner"
+          args="joint_state_controller
+          front_left_wheel_joint_controller
+          back_left_wheel_joint_controller
+          front_right_wheel_joint_controller
+          back_right_wheel_joint_controller
+          shoulder_joint_controller
+          wrist_pitch_joint_controller
+          wrist_roll_joint_controller
+          --shutdown-timeout 3"
+          unless="$(arg simple_arm)">
+
+    </node>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="30.0" />
+    </node>
+
+
+    <node pkg="simulation" type="gazebo_wheels.py" name="gazebo_wheels" output="screen" />
+
+        <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find qset_launch)/params/qset.rviz" /> -->
+</launch>

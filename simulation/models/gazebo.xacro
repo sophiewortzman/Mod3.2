@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="gazebo_realsense" params="suffix">
+    <gazebo reference="camera_${suffix}">
+        <sensor type="depth" name="realsense_${suffix}">
+            <update_rate>10.0</update_rate>
+            <visualize>true</visualize>
+            <camera>
+                <horizontal_fov>1.487</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+            </camera>
+            <plugin name="realsense_depth_controller" filename="libgazebo_ros_openni_kinect.so">
+                <baseline>0</baseline>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>10.0</updateRate>
+                <cameraName>camera_${suffix}</cameraName>
+                <imageTopicName>/camera/${suffix}/color/image_raw</imageTopicName>
+                <cameraInfoTopicName>/camera/${suffix}/color/camera_info</cameraInfoTopicName>
+                <depthImageTopicName>/camera/${suffix}/depth/image_raw</depthImageTopicName>
+                <depthImageCameraInfoTopicName>/camera/${suffix}/depth/camera_info</depthImageCameraInfoTopicName>
+                <pointCloudTopicName>/camera/${suffix}/depth/color/points</pointCloudTopicName>
+                <frameName>camera_${suffix}_optical</frameName>
+                <pointCloudCutoffMax>4</pointCloudCutoffMax>
+                <pointCloudCutoff>0.1</pointCloudCutoff>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+                <CxPrime>0</CxPrime>
+                <Cx>0</Cx>
+                <Cy>0</Cy>
+                <focalLength>0</focalLength>
+                <hackBaseline>0</hackBaseline>
+            </plugin>
+        </sensor>
+    </gazebo>
+</xacro:macro>
+
+
+
+</robot>

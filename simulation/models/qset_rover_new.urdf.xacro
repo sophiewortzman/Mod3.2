@@ -1,0 +1,418 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="qset_rover">
+    <xacro:include filename="$(find qset_launch)/models/gazebo.xacro"/>
+    <xacro:include filename="$(find qset_launch)/models/realsense.xacro"/>
+    <!--Materials start-->
+    <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+    </material>
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+    <!--Materials end-->
+
+    <xacro:property name="width" value="1.0"/>
+    <xacro:property name="front_length" value="0.5"/>
+    <xacro:property name="mid_length" value="0.75"/>
+    <xacro:property name="back_length" value="0.2"/>
+    <xacro:property name="pontoon_width" value="0.05"/>
+    <xacro:property name="back_width" value="0.5"/>
+    <xacro:property name="thick" value="0.15"/>
+    <xacro:property name="front_width" value="0.5"/>
+
+    <xacro:property name="rocker_angle" value="0.61"/>
+    <xacro:property name="rocker_horizontal_length" value="0.31" />
+    <xacro:property name="rocker_diagonal_length" value="0.39"/>
+    <xacro:property name="rocker_width" value="0.057"/>
+    <xacro:property name="rocker_height" value="0.051"/>
+    <xacro:property name="rocker_height_offset" value="0.22"/>
+    <xacro:property name="wheel_radius" value="0.121"/>
+    <xacro:property name="wheel_thickness" value="0.116"/>
+    <xacro:property name="arm_base_width" value="0.15"/>
+    <xacro:property name="arm_base_height" value="0.1"/>
+    <xacro:property name="upper_arm_length" value="0.5"/>
+    <xacro:property name="forearm_length" value="0.4"/>
+    <xacro:property name="end_effector_length" value="0.2"/>
+    <xacro:property name="end_effector_thickness" value="0.05"/>
+    <xacro:property name="end_effector_width" value="0.1"/>
+    <xacro:property name="arm_width" value="0.1"/>
+    <xacro:property name="arm_height" value="0.05"/>
+    <xacro:property name="rover_total_height" value="0.4"/>
+
+    <xacro:macro name="default_inertial" params="mass">
+        <inertial>
+            <mass value="${mass}" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                     iyy="1.0" iyz="0.0"
+                     izz="1.0" />
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="pontoon" params="side reflect">
+        <link name="${side}_pontoon">
+            <visual>
+                <geometry>
+                    <box size="${front_length} ${pontoon_width} ${thick}"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${front_length} ${pontoon_width} ${thick}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="0.5"/>
+        </link>
+        <joint name="${side}_pontoon_base_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="${side}_pontoon"/>
+            <origin rpy="0 0 0" xyz="${mid_length/2 + front_length/2} ${reflect * (front_width/2 + pontoon_width/2)} 0"/>
+            <axis xyz="0 0 0"/>
+        </joint>
+    </xacro:macro>
+
+
+    <xacro:macro name="wheel" params="side location reflect_lr reflect_fb">
+        <link name="${location}_${side}_wheel">
+            <visual>
+                <geometry>
+                    <cylinder length="${wheel_thickness}" radius="${wheel_radius}"/>
+                </geometry>
+                <material name="red"/>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <cylinder length="${wheel_thickness}" radius="${wheel_radius}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="2"/>
+        </link>
+        <joint name="${location}_${side}_wheel_joint" type="continuous">
+            <parent link="${location}_${side}_diagonal"/>
+            <child link="${location}_${side}_wheel"/>
+            <origin xyz="${(rocker_diagonal_length / 2 - rocker_height / 2) * reflect_fb} ${(rocker_width / 2 + wheel_thickness / 2) * reflect_lr} 0" rpy="-1.570795 0 0"/>
+            <axis xyz="0 0 1"/>
+
+        </joint>
+
+        <transmission name="${location}_${side}_wheel_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <actuator name="${location}_${side}_wheel_motor">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+            <joint name="${location}_${side}_wheel_joint">
+                <hardwareInterface>VelocityJointInterface</hardwareInterface>
+            </joint>
+        </transmission>
+        <gazebo reference="${location}_${side}_wheel">
+            <mu1 value="0.5"/>
+            <mu2 value="0.5"/>
+            <kp value="1000000.0" />
+            <kd value="100.0" />
+            <material>Gazebo/Grey</material>
+        </gazebo>
+    </xacro:macro>
+
+
+    <xacro:macro name="arm">
+        <link name="arm_base">
+            <visual>
+                <geometry>
+                    <box size="${arm_base_width} ${elec_box_width} ${arm_base_height}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${arm_base_width} ${elec_box_width} ${arm_base_height}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="1"/>
+        </link>
+        <joint name="base_to_arm_base_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="arm_base"/>
+            <origin rpy="0 0 0" xyz="${pontoon_length/2 - arm_base_width/2 + pontoon_length/2 - elec_box_depth} 0 0"/>
+        </joint>
+
+        <link name="upper_arm">
+            <visual>
+                <geometry>
+                    <box size="${arm_height} ${arm_width} ${upper_arm_length}"/>
+                </geometry>
+                <origin xyz="0 0 ${upper_arm_length/2 }" rpy="0 0 0"/>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${upper_arm_length/2 }" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${arm_height} ${arm_width} ${upper_arm_length}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="1"/>
+
+        </link>
+        <joint name="shoulder" type="revolute">
+            <parent link="arm_base"/>
+            <child link="upper_arm"/>
+            <origin xyz="0 0 ${arm_base_height / 2}" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="${-3.14159/2}" upper="${3.14159/2}" effort="100" velocity="3"/>
+            <dynamics damping="2.0"/>
+        </joint>
+        <transmission name="shoulder_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <actuator name="shoulder_motor">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+            <joint name="shoulder">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+        </transmission>
+        <link name="forearm">
+            <visual>
+                <geometry>
+                    <box size="${arm_height} ${arm_width} ${forearm_length}"/>
+                </geometry>
+                <origin xyz="0 0 ${forearm_length/2 }" rpy="0 0 0"/>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${forearm_length/2 }" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${arm_height} ${arm_width} ${forearm_length}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="1"/>
+        </link>
+        <joint name="elbow" type="revolute">
+            <parent link="upper_arm"/>
+            <child link="forearm"/>
+            <origin xyz="0 0 ${upper_arm_length}" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="${-3.14159+0.5}" upper="${3.14159-0.5}" effort="100" velocity="3"/>
+            <dynamics damping="2.0"/>
+        </joint>
+        <transmission name="elbow_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <actuator name="elbow_motor">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+            <joint name="elbow">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+        </transmission>
+
+        <link name="end_effector">
+            <visual>
+                <geometry>
+                    <box size="${arm_height} ${arm_width} ${end_effector_length}"/>
+                </geometry>
+                <origin xyz="0 0 ${end_effector_length/2 }" rpy="0 0 0"/>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${end_effector_length/2 }" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${arm_height} ${arm_width} ${end_effector_length}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="1"/>
+        </link>
+        <!--        <link name="wrist_middle"/>-->
+        <joint name="wrist_pitch" type="revolute">
+            <parent link="forearm"/>
+            <child link="end_effector"/>
+            <origin xyz="0 0 ${forearm_length}" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="${-3.14159+0.5}" upper="${3.14159-0.5}" effort="100" velocity="3"/>
+            <dynamics damping="2.0"/>
+        </joint>
+        <transmission name="wrist_pitch_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <actuator name="wrist_pitch_motor">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+            <joint name="wrist_pitch">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+        </transmission>
+        <!--        <joint name="wrist_roll" type="continuous">
+                    <parent link="wrist_middle"/>
+                    <child link="end_effector"/>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <axis xyz="0 0 1"/>
+                    <limit lower="${-3.14159+0.5}" upper="${3.14159-0.5}" effort="10" velocity="3"/>
+                    <dynamics damping="2.0"/>
+                </joint>
+                <transmission name="wrist_roll_trans">
+                    <type>transmission_interface/SimpleTransmission</type>
+                    <actuator name="wrist_roll_motor">
+                        <mechanicalReduction>1</mechanicalReduction>
+                    </actuator>
+                    <joint name="wrist_roll">
+                        <hardwareInterface>EffortJointInterface</hardwareInterface>
+                    </joint>
+                </transmission>-->
+    </xacro:macro>
+
+    <xacro:macro name="rocker" params="side reflect">
+        <xacro:macro name="diagonal" params="location reflect_diag">
+            <link name="${location}_${side}_diagonal">
+                <visual>
+                    <geometry>
+                        <box size="${rocker_diagonal_length} ${rocker_width} ${rocker_height}"/>
+                    </geometry>
+                    <material name="red"/>
+                </visual>
+                <collision>
+                    <geometry>
+                        <box size="${rocker_diagonal_length} ${rocker_width} ${rocker_height}"/>
+                    </geometry>
+                </collision>
+                <xacro:default_inertial mass="1"/>
+            </link>
+            <joint name="${side}_rocker_to_${location}_diagonal" type="fixed">
+                <parent link="${side}_rocker_horizontal"/>
+                <child link="${location}_${side}_diagonal"/>
+                <origin rpy="0 ${rocker_angle * reflect_diag} 0 " xyz="${(rocker_horizontal_length / 2  + rocker_height + 0.1)* reflect_diag} 0 ${rocker_height_offset / -2}"/>
+            </joint>
+
+        </xacro:macro>
+        <link name="${side}_rocker_horizontal">
+            <visual>
+                <geometry>
+                    <box size="${rocker_horizontal_length} ${rocker_width} ${rocker_height}"/>
+                </geometry>
+                <material name="red"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${rocker_horizontal_length} ${rocker_width} ${rocker_height}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="2"/>
+        </link>
+        <joint name="${side}_base_to_rocker" type="fixed">
+            <parent link="base_link"/>
+            <child link="${side}_rocker_horizontal"/>
+            <origin rpy="0 0 0" xyz="-0.0 ${(width / 2 + rocker_width / 2) * reflect} 0"/>
+        </joint>
+        <xacro:diagonal location="front" reflect_diag="1"/>
+        <xacro:diagonal location="back" reflect_diag="-1"/>
+
+    </xacro:macro>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="${mid_length} ${width} ${thick}"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${mid_length} ${width} ${thick}"/>
+            </geometry>
+        </collision>
+        <xacro:default_inertial mass="5"/>
+    </link>
+    <link name="back_link">
+        <visual>
+            <geometry>
+                <box size="${back_length} ${back_width} ${thick}"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${back_length} ${back_width} ${thick}"/>
+            </geometry>
+        </collision>
+        <xacro:default_inertial mass="1"/>
+    </link>
+
+    <joint name="mid_to_back_link" type="fixed">
+        <parent link="base_link"/>
+        <child link="back_link"/>
+        <origin rpy="0 0 0" xyz="${-mid_length/2 - back_length/2} 0 0"/>
+    </joint>
+
+    <xacro:pontoon side="right" reflect="-1"/>
+    <xacro:pontoon side="left" reflect="1"/>
+    <xacro:rocker side="right" reflect="-1"/>
+    <xacro:rocker side="left" reflect="1"/>
+    <xacro:wheel side="left" location="front" reflect_lr="1" reflect_fb="1"/>
+    <xacro:wheel side="right" location="front" reflect_lr="-1" reflect_fb="1"/>
+    <xacro:wheel side="left" location="back" reflect_lr="1" reflect_fb="-1"/>
+    <xacro:wheel side="right" location="back" reflect_lr="-1" reflect_fb="-1"/>
+<!--    <xacro:pontoon side="left" reflect="1"/>
+    <xacro:pontoon side="right" reflect="-1"/>
+    <xacro:rocker side="right" reflect="-1"/>
+    <xacro:rocker side="left" reflect="1"/>
+    <xacro:wheel side="left" location="front" reflect_lr="1" reflect_fb="1"/>
+    <xacro:wheel side="right" location="front" reflect_lr="-1" reflect_fb="1"/>
+    <xacro:wheel side="left" location="back" reflect_lr="1" reflect_fb="-1"/>
+    <xacro:wheel side="right" location="back" reflect_lr="-1" reflect_fb="-1"/>
+    <xacro:arm/>
+
+    <xacro:realsense suffix="left" parent="left_pontoon" x="${pontoon_length /2}" y="0" z="0" roll="0" pitch="${0*3.14159}" yaw="0.4"/>
+    <xacro:gazebo_realsense suffix="left"/>
+
+
+    <xacro:realsense suffix="right" parent="right_pontoon" x="${pontoon_length /2}" y="0" z="0" roll="0" pitch="${0*3.14159}" yaw="-0.4"/>
+    <xacro:gazebo_realsense suffix="right"/>-->
+
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+        <plugin name="robot_gps_sim" filename="libhector_gazebo_ros_gps.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>20.0</updateRate>
+            <bodyName>base_link</bodyName>
+            <topicName>fix</topicName>
+            <velocityTopicName>gps_velocity</velocityTopicName>
+            <drift>0.0 0.0 0.0</drift>
+            <gaussianNoise>0.000 0.000 0.000</gaussianNoise>
+            <velocityDrift>0 0 0</velocityDrift>
+            <velocityGaussianNoise>0.00 0.00 0.00</velocityGaussianNoise>
+            <frameId>map</frameId>
+        </plugin>
+        <plugin name="robot_imu_sim" filename="libhector_gazebo_ros_imu.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>100.0</updateRate>
+            <bodyName>base_link</bodyName>
+            <frameID>base_link</frameID>
+            <topicName>imu</topicName>
+            <xyzOffset>0.0 0.0 0.0</xyzOffset>
+            <rpyOffset>0.0 0.0 0.0</rpyOffset>
+            <gaussianNoise>0</gaussianNoise>
+            <accelDrift>0.0 0.0 0.5</accelDrift>
+            <accelGaussianNoise>0.0 0.0.0</accelGaussianNoise>
+            <rateDrift>0.0 0.0 0.0</rateDrift>
+            <rateGaussianNoise>0.00 0.00 0.00</rateGaussianNoise>
+            <headingDrift>0.0</headingDrift>
+            <headingGaussianNoise>0.00</headingGaussianNoise>
+        </plugin>
+        <plugin name="magnetometer" filename="libhector_gazebo_ros_magnetic.so">
+            <updateRate>20.0</updateRate>
+            <bodyname>base_link</bodyname>
+            <topicName>magnetometerStatus</topicName>
+            <referenceHeading>0.0</referenceHeading>
+            <declination>3.0333</declination>
+            <inclination>60.0</inclination>
+            <offset>0 0 0</offset>
+            <driftFrequency>0 0 0</driftFrequency>
+            <gaussianNoise>0 0 0</gaussianNoise>
+            <frameId>map</frameId>
+        </plugin>
+    </gazebo>
+
+
+
+</robot>

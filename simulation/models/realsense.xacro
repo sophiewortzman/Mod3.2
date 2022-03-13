@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+    <xacro:property name="realsense_size_x" value="0.026"/>
+    <xacro:property name="realsense_size_y" value="0.064"/>
+    <xacro:property name="realsense_size_z" value="0.026"/>
+
+    <xacro:macro name="realsense" params="suffix parent:=body x y z roll pitch yaw">
+        <link name="camera_${suffix}_optical"/>
+        <link name="camera_${suffix}">
+           <visual>
+               <geometry>
+                   <box size="${realsense_size_x} ${realsense_size_y} ${realsense_size_z}"/>
+               </geometry>
+           </visual>
+            <collision>
+                <geometry>
+                    <box size="${realsense_size_x} ${realsense_size_y} ${realsense_size_z}"/>
+                </geometry>
+            </collision>
+            <inertia>
+                <mass value="0.072"/>
+            </inertia>
+        </link>
+        <joint name="camera_${suffix}_${parent}_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="camera_${suffix}"/>
+            <origin xyz="${x} ${y} ${z}" rpy="${roll} ${pitch} ${yaw}"/>
+        </joint>
+        <joint name="camera_${suffix}_optical_joint" type="fixed">
+            <parent link="camera_${suffix}"/>
+            <child link="camera_${suffix}_optical"/>
+            <!--
+              Account for differences between camera and robot coordinate frames.
+              See: https://www.ros.org/reps/rep-0103.html#coordinate-frame-conventions
+            -->
+            <origin xyz="0 0 0" rpy="-1.5707963267948966 0.0 -1.5707963267948966"/>
+        </joint>
+    </xacro:macro>
+</robot>
