@@ -1,0 +1,8 @@
+#Goal
+uint8 button
+---
+#Result
+bool status
+---
+#Feedback
+float32 progress

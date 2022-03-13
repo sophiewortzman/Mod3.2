@@ -1,0 +1,5 @@
+start simulation
+roslaunch owen_launch gazebo.launch
+
+send a destination to simulation
+rostopic pub /destination sensor_msgs/NavSatFix TODO finish this line

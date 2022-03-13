@@ -1,0 +1,20 @@
+#Goal
+float32 radius
+geometry_msgs/PointStamped centre
+bool dual
+int32 tag_id
+int32 tag_id_gate
+bool found_one_post
+# if found one post is true post will have the location of it and you should search near it for the other half of the gate
+geometry_msgs/PointStamped post
+# the navigation command that started this action. Get the speed from here
+qset_msgs/AutonomousNavigationCmd nav_cmd
+---
+#Result
+bool found
+#if dual is false only populate post_1
+geometry_msgs/PointStamped post_1
+geometry_msgs/PointStamped post_2
+---
+#Feedback
+float32 progress
