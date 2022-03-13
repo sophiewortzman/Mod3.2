@@ -1,0 +1,17 @@
+#Goal
+# if this is false then just traverse to the point that is post_1
+bool is_gate
+
+# the tag ids for the posts, this may be used or visual traversal if our localization is not good enough
+int32 tag_id_1
+int32 tag_id_2
+geometry_msgs/PointStamped post_1
+geometry_msgs/PointStamped post_2
+#the command that started this traversal. get the speed from here
+qset_msgs/AutonomousNavigationCmd nav_cmd
+---
+#Result
+bool complete
+---
+#Feedback
+float32 progress
