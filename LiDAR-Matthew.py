@@ -20,9 +20,6 @@ class LaserListener:
 
 # end of laser scan code access laserRanges for an array of all measured distances from the laser sensors
 
-print(laserRanges)
-
-
 # Things that might be helpful:
 
 # import lidar library
