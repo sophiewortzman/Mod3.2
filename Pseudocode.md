@@ -16,10 +16,16 @@ While (endpoint does not equal current point) {
 
 Code snippets: https://gitlab.com/qset-mod-3/unified-launch/
 
-Tasks: 
+Tasks:
+
 Integrate steering libraries to control rover
+
 Integrate headings and location data
+
 Retrieve LiDAR data using Python libraries
+
 Create loop continuing until the target is reached
+
 Create the irregular obstacle avoidance algorithm
+
 Implement Dijkstra’s Algorithm
