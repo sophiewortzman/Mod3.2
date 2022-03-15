@@ -1,5 +1,3 @@
-
-   
 from qset_lib import Rover
 from time import sleep
 
