@@ -2,7 +2,21 @@ from qset_lib import Rover
 from time import sleep
 
 #import lidar data
+from sensor_msgs.msg import LaserScan
 
+
+class LaserListener:
+
+    def __init__(self):
+        self.laserSub = rospy.Subscriber("/leddar/leddarData", LaserScan, self.laser_callback, queue_size=1)
+        self.laserRanges = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+    def laser_callback(self, msg):
+        # type: (LaserScan) -> None
+        self.laserRanges = msg.ranges
+
+
+# end of laser scan code access laserRanges for an array of all measured distances from the laser sensors
 
 def main():
     rover = Rover()
