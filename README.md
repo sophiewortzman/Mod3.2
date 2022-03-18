@@ -9,3 +9,6 @@ Most of this code will not work in an IDE (like PyCharm), so we won't really be 
 This means that everyone will have to code their general idea of how your section will work.
 
 It is possible to use dummy variables to test your code in PyCharm, like setting a speed for the rover wheels and making sure you getting the output you are looking for.
+
+
+roslaunch simulation gazebo.launch
