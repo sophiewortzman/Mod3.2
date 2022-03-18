@@ -21,7 +21,7 @@ def main():
         sleep(0.01)
 
         #run dijkstra's algorithm
-        import Dijkstra
+        #import Dijkstra
          
          #turn left
          
