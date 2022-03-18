@@ -6,7 +6,8 @@ def main():
     rover = Rover()
 
 import rospy  # this is the module required for all simulation communication
-    i = 0
+
+i = 0
 
 # start of wheel control code
 from wheel_control.msg import wheelSpeed  # this is a required module for the drive communication
