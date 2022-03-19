@@ -6,8 +6,8 @@ def main():
 
     i = 0
 
-    left_side_speed = -5
-    right_side_speed = 5
+    left_side_speed = 4
+    right_side_speed = 4
 
     while i < 1000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
