@@ -12,6 +12,7 @@ def main():
 
     while not rospy.is_shutdown():
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+        print (rover.laser_distances)
         #from sensor_msgs.msg import LaserScan
         for dist in rover.laser_distances:
             if dist < 1.5:
