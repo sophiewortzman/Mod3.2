@@ -16,10 +16,12 @@ def main():
         #from sensor_msgs.msg import LaserScan
         for dist in rover.laser_distances:
             if dist < 1.5:
+                if left_side_speed = 5
+                    Wall = rover.heading
                 left_side_speed = -1
                 right_side_speed = 1
                 rover.send_command(left_side_speed, right_side_speed)
-            if rover.heading > 90:
+            if rover.heading > Wall + 90:
                 left_side_speed = 0
                 right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
