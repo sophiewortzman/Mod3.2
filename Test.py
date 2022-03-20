@@ -23,6 +23,7 @@ def main():
                     right_side_speed = 1
                     rover.send_command(left_side_speed, right_side_speed)
                     sleep(0.01)
+                    break
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.01)
 
