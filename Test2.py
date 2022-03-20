@@ -36,7 +36,7 @@ def main():
                     rover.send_command(left_side_speed, right_side_speed)
                     print("left_side_speed: " + str(left_side_speed) + " right_side_speed: " + str(right_side_speed))
 
-            if rover.heading < Wall - 1:
+            if rover.heading < Wall - 2:
                 left_side_speed = 5
                 right_side_speed = 5
                 rover.send_command(left_side_speed, right_side_speed)
