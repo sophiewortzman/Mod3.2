@@ -11,6 +11,7 @@ source ~/.bashrc
 sudo apt update
 sudo apt install x11-apps
 xeyes
+#close xeyes
 
 roslaunch simulation gazebo.launch
 
