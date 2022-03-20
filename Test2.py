@@ -8,13 +8,15 @@ def main():
     i = 0
     Wall = 0
 
-    left_side_speed = 5
-    right_side_speed = 5
-    rover.send_command(left_side_speed, right_side_speed)
+    
 
     while not rospy.is_shutdown():
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         print (rover.laser_distances)
+        left_side_speed = 5
+        right_side_speed = 5
+        rover.send_command(left_side_speed, right_side_speed)
+        
         for dist in rover.laser_distances:
             if dist < 1.5:
                 if left_side_speed == 5:
