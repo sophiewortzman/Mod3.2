@@ -18,7 +18,7 @@ def main():
                 left_side_speed = -1
                 right_side_speed = 1
                 rover.send_command(left_side_speed, right_side_speed)
-                if Heading > 90:
+                if rover.heading > 90:
                     left_side_speed = 0
                     right_side_speed = 0
                     rover.send_command(left_side_speed, right_side_speed)
