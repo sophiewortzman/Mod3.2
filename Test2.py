@@ -16,7 +16,6 @@ def main():
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         print (rover.laser_distances)
         
-        
         for dist in rover.laser_distances:
             if dist < 1.5:
                 if left_side_speed == 5:
@@ -24,7 +23,8 @@ def main():
                 left_side_speed = -1
                 right_side_speed = 1
                 rover.send_command(left_side_speed, right_side_speed)      
-            if rover.heading > Wall + 45:
+            
+            if rover.heading > Wall + 5:
                 left_side_speed = 3
                 right_side_speed = 3
                 rover.send_command(left_side_speed, right_side_speed)
