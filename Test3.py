@@ -30,10 +30,10 @@ def main():
                 left_side_speed = 5
                 right_side_speed = 5
                 rover.send_command(left_side_speed, right_side_speed)
-                sleep(2
+                sleep(2)
                 
                 left_side_speed = 2
-                right_side_speed = -2
+                right_side_speed = -2  
                 rover.send_command(left_side_speed, right_side_speed)
                 sleep(5)
        
