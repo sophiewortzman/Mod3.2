@@ -24,20 +24,16 @@ def main():
             if rover.heading > Wall + 90:
                 left_side_speed = 3
                 right_side_speed = 3
-               
+                rover.send_command(left_side_speed, right_side_speed)
                 if distance > 1.3:
                     sleep(1)
                     left_side_speed = 1
                     right_side_speed = -1
+                    rover.send_command(left_side_speed, right_side_speed)
                 if rover.heading == Wall:
                     left_side_speed = 5
                     right_side_speed = 5
-                    
-                        
-                    
-                
-                
-                rover.send_command(left_side_speed, right_side_speed)
+                    rover.send_command(left_side_speed, right_side_speed)
             
         sleep(0.05)
 
