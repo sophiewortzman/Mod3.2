@@ -22,14 +22,14 @@ def main():
             rover.send_command(left_side_speed, right_side_speed)
             
             if dist < 1.5:
-                left_side_speed = -1
-                right_side_speed = 1
+                left_side_speed = -2
+                right_side_speed = 2
                 rover.send_command(left_side_speed, right_side_speed) 
-                sleep(1)
-                left_side_speed = 1
-                right_side_speed = -1
+                sleep(2.5)
+                left_side_speed = 2
+                right_side_speed = -2
                 rover.send_command(left_side_speed, right_side_speed)
-                sleep(1)
+                sleep(2.5)
        
         sleep(0.05)
 
