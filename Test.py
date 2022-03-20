@@ -6,6 +6,7 @@ def main():
     rover = Rover()
 
     i = 0
+    Wall = 0
 
     left_side_speed = 5
     right_side_speed = 5
