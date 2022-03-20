@@ -29,7 +29,7 @@ def main():
                 right_side_speed = 3
                 rover.send_command(left_side_speed, right_side_speed)
                 if distance > 1.3:
-                    sleep(0.01)
+                    sleep(1)
                     left_side_speed = 1
                     right_side_speed = -1
                     rover.send_command(left_side_speed, right_side_speed)
