@@ -1,6 +1,6 @@
 #Setup for Gazebo code
 
-#Open Xlaunch, disable "Native opengl" and enable "Disable access control".
+#Open Xlaunch, enable "start no client", disable "Native opengl" and enable "Disable access control".
 #Open Ubuntu and paste the following by right clicking in the terminal. 
 
 roslaunch simulation gazebo.launch
