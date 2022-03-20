@@ -24,7 +24,7 @@ def main():
                     rover.send_command(left_side_speed, right_side_speed)
                     sleep(0.01)
                 break
-                print(str(rover.heading)
+                print(str(rover.heading))
                 left_side_speed = 0
                 right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
