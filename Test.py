@@ -9,7 +9,7 @@ def main():
     left_side_speed = 5
     right_side_speed = 5
 
-    while i < 3000:
+    while not rospy.is_shutdown():
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
         #from sensor_msgs.msg import LaserScan
         for dist in rover.laser_distances:
@@ -18,7 +18,6 @@ def main():
                 right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
         rover.send_command(left_side_speed, right_side_speed)
-        i = i + 1
         sleep(0.01)
 
 
