@@ -18,6 +18,11 @@ def main():
                 left_side_speed = 0
                 right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
+                while rover.heading != 90.0:
+                    left_side_speed = -1
+                    right_side_speed = 1
+                    rover.send_command(left_side_speed, right_side_speed)
+                    sleep(0.01)
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.01)
 
