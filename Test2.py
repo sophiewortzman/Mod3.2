@@ -17,7 +17,7 @@ def main():
         print (rover.laser_distances)
         
         for dist in rover.laser_distances:
-            import dist
+            from rover.laser_distances import dist
             if dist < 1.5:
                 if left_side_speed == 5:
                     Wall = rover.heading
