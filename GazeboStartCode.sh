@@ -1,7 +1,16 @@
 #Setup for Gazebo code
 
 #Open Xlaunch, enable "start no client", disable "Native opengl" and enable "Disable access control".
-#Open Ubuntu and paste the following by right clicking in the terminal. 
+#Open Ubuntu and paste the following by right clicking in the terminal.
+#To test xeyes, past the following into the terminal before launching gazebo.
+
+echo 'export LIBGL_ALWAYS_INDIRECT=0' >> ~/.bashrc
+echo "export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0" >> ~/.bashrc
+source ~/.bashrc
+
+sudo apt update
+sudo apt install x11-apps
+xeyes
 
 roslaunch simulation gazebo.launch
 
