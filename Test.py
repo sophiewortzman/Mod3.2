@@ -49,7 +49,7 @@ def reset_heading(rover, left_side_speed, right_side_speed):
                 break
             sleep(0.05)
             
- def findHeading(rover, rover.heading, objective):
+ def find_heading(rover, rover.heading, objective):
 
     #find the slope between the two points, x2-x1 on top to make it relative to the y-axis (0 degrees)
 
