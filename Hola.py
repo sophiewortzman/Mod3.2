@@ -1,8 +1,12 @@
 from qset_lib import Rover
 from time import sleep
 import rospy
+from sensor_msgs import LaserScan
 
-rover = Rover()
+
+rover = Rover(rover)
+def laser_Shit():
+    rover.laserRanges = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
