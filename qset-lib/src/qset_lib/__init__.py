@@ -39,32 +39,32 @@ class Rover:
     def __laser_callback(self, msg):
         self.laser_distances = msg.ranges
         
-    def turn_left(self, left_speed, right_speed):
-        while(1):
-            temp = self.heading
-            left_side_speed = -1
-            right_side_speed = 1
-            self.send_command(left_side_speed, right_side_speed)
-            # Here is where you would place the desired heading variable.
-                if self.heading > temp + 90:
-                    left_side_speed = 0
-                    right_side_speed = 0
-                    self.send_command(left_side_speed, right_side_speed)
-                    break
-        sleep(0.05)
+#     def turn_left(self, left_speed, right_speed):
+#         while(1):
+#             temp = self.heading
+#             left_side_speed = -1
+#             right_side_speed = 1
+#             self.send_command(left_side_speed, right_side_speed)
+#             # Here is where you would place the desired heading variable.
+#                 if self.heading > temp + 90:
+#                     left_side_speed = 0
+#                     right_side_speed = 0
+#                     self.send_command(left_side_speed, right_side_speed)
+#                     break
+#         sleep(0.05)
    
-    def turn_right(self, left_speed, right_speed):
-        while(1):
-            temp = self.heading
-            left_side_speed = 1
-            right_side_speed = -1
-            self.send_command(left_side_speed, right_side_speed)
-            # Here is where you would place the desired heading variable.
-                if self.heading < temp - 90:
-                    left_side_speed = 0
-                    right_side_speed = 0
-                    self.send_command(left_side_speed, right_side_speed)
-                    break
-        sleep(0.05)
+#     def turn_right(self, left_speed, right_speed):
+#         while(1):
+#             temp = self.heading
+#             left_side_speed = 1
+#             right_side_speed = -1
+#             self.send_command(left_side_speed, right_side_speed)
+#             # Here is where you would place the desired heading variable.
+#                 if self.heading < temp - 90:
+#                     left_side_speed = 0
+#                     right_side_speed = 0
+#                     self.send_command(left_side_speed, right_side_speed)
+#                     break
+#         sleep(0.05)
 
         
