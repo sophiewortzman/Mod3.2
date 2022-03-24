@@ -65,7 +65,7 @@ def main():
         
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
-        print rover.laser_distances[0]
+        print rover.laser_distances
        
         for dist in rover.laser_distances:
                if dist < 5:
