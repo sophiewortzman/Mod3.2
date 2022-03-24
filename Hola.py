@@ -1,7 +1,7 @@
 from qset_lib import Rover
 from time import sleep
 import rospy
-from sensor_msgs import LaserScan
+from sensor_msgs.msg import LaserScan
 
 
 rover = Rover(rover)
