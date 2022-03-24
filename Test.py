@@ -2,6 +2,8 @@ from qset_lib import Rover
 from time import sleep
 import rospy
 
+rover = Rover()
+
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
     while(1):
@@ -35,7 +37,7 @@ def turn_right(rover, left_speed, right_speed):
 
 
 def main():
-    rover = Rover()
+    
     
   
    
