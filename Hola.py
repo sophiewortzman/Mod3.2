@@ -50,6 +50,7 @@ def turn_right(rover, left_speed, right_speed):
 
 def main():
     while (1):
+        x=0
         while (x < (len(rover.laser_distances)+1)):
             rover.laser_distances[x] = distances[x]
             x = x+1
