@@ -41,11 +41,6 @@ def reset_heading(rover, left_side_speed, right_side_speed):
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
       # Here is where you would place the desired heading variable.
-            
-
-  i = 0
-  Wall = 0        
-
 
 def main():
 
