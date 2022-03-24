@@ -5,9 +5,7 @@ from sensor_msgs.msg import LaserScan
 
 
 rover = Rover()
-def laser_Shit(rover):
-    rover_laserSub = rospy.Subscriber("/leddar/leddarData", LaserScan, self.laser_callback, queue_size=1
-    rover_laserRange = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
@@ -67,7 +65,7 @@ def main():
         
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
-        print (rover.laserRange[0])
+        print (rover.laser_distances[0])
         for dist in rover.laser_distances:
                if dist < 5:
                 turn_right(rover, left_side_speed, right_side_speed)
