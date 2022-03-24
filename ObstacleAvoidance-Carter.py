@@ -55,7 +55,6 @@ def main():
         for dist in rover.laser_distances:
                if dist < 5:
                 turn_right(rover, left_side_speed, right_side_speed)
-                reset_heading(rover, left_side_speed, right_side_speed)
 #                if left_side_speed == 5:
 #                    Wall = rover.heading
 #                left_side_speed = -1
