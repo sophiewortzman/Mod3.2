@@ -5,7 +5,6 @@ import rospy
 
 rover = Rover()
 
-
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
     while(1):
@@ -35,7 +34,7 @@ def turn_right(rover, left_speed, right_speed):
   sleep(0.05)
 
 
-  for dist in laser_distances:
+  for dist in rover.laser_distances:
         if dist > 5:
             while(1):
                 left_side_speed = 1
@@ -50,6 +49,10 @@ def turn_right(rover, left_speed, right_speed):
 
 
 def main():
+    while (1):
+        for x < len(rover.laser_distances):
+            rover.laser_distances[x] = distances[x]
+            x++
     
     
   
@@ -64,7 +67,7 @@ def main():
         
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
-        print rover.laser_distances
+        print distances[1]
        
         for dist in rover.laser_distances:
                if dist < 5:
