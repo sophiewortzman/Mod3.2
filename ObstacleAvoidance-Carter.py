@@ -41,6 +41,14 @@ def reset_heading(rover, left_side_speed, right_side_speed):
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
       # Here is where you would place the desired heading variable.
+     def __init__(self):
+        self.laserSub = rospy.Subscriber("/leddar/leddarData", LaserScan, self.laser_callback, queue_size=1)
+        self.laserRanges = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+    def laser_callback(self, msg):
+        # type: (LaserScan) -> None
+        self.laserRanges = msg.ranges
+
 
 def main():
 
