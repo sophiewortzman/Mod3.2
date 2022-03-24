@@ -40,12 +40,7 @@ def turn_right(rover, left_speed, right_speed):
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
       # Here is where you would place the desired heading variable.
-                if rover.heading = range(-1, 1):
-                    left_side_speed = 0
-                    right_side_speed = 0
-                    rover.send_command(left_side_speed, right_side_speed)
-                break
-            sleep(0.05)
+
             
 
   i = 0
