@@ -1,7 +1,6 @@
 from qset_lib import Rover
 from time import sleep
 import rospy
-from sensor_msgs.msg import LaserScan
 
 
 rover = Rover()
@@ -37,7 +36,7 @@ def turn_right(rover, left_speed, right_speed):
 
 
   for dist in laser_distances:
-        if dist > 10:
+        if dist > 5:
             while(1):
                 left_side_speed = 1
                 right_side_speed = -1
