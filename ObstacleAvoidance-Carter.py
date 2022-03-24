@@ -6,15 +6,15 @@ i = 0
 
 # start of wheel control code
 from wheel_control.msg import wheelSpeed  # this is a required module for the drive communication
-    left_side_speed = 1
-    right_side_speed = 1
+left_side_speed = 1
+right_side_speed = 1
 
 rospy.init_node("controller")
-    while i < 1000:
-        print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
-        for dist in rover.laser_distances:
-            if dist < 0.1:
-                print("TOO CLOSE")
+while i < 1000:
+    print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
+    for dist in rover.laser_distances:
+        if dist < 0.1:
+           print("TOO CLOSE")
         rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
         sleep(0.01)
