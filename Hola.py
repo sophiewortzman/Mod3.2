@@ -4,8 +4,8 @@ import rospy
 from sensor_msgs.msg import LaserScan
 
 
-rover = Rover(rover)
-def laser_Shit():
+rover = Rover()
+def laser_Shit(rover):
     rover.laserRanges = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 def turn_left(rover, left_speed, right_speed):
