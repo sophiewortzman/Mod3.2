@@ -52,7 +52,7 @@ def main():
         print (rover.laser_distances)
         for dist in rover.laser_distances:
                if dist < 1.5:
-               turn_left
+               turn_left()
 #                if left_side_speed == 5:
 #                    Wall = rover.heading
 #                left_side_speed = -1
