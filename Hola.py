@@ -33,7 +33,7 @@ def turn_right(rover, left_speed, right_speed):
   sleep(0.05)
 
 
-    for dist in laser_distances:
+  for dist in laser_distances:
         if dist > 10:
             while(1):
                 left_side_speed = 1
