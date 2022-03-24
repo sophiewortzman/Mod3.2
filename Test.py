@@ -49,7 +49,7 @@ def reset_heading(rover, left_side_speed, right_side_speed):
                 break
             sleep(0.05)
   
-#call this to find the new heading angle after the rover turns
+#call this to find the new heading angle after the rover turns (returns heading angle)
  def find_heading(rover, rover.heading, objective):
 
     #find the slope between the two points, x2-x1 on top to make it relative to the y-axis (0 degrees)
@@ -58,19 +58,37 @@ def reset_heading(rover, left_side_speed, right_side_speed):
 
     #take the arctan of the slope to find the heading angle
 
-    return math.atan(m)           
+    return math.atan(m)
+
+#call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
+def side_to_favour(rover, laserRanges):
+    
+    sum1 = 0
+    sum2 = 0
+    index = 0
+
+    for index in len(laserRanges):
+
+        sum1 += laserRanges[index]
+        index += 1
+
+        if index >= (len(laserRanges)/2):
+
+            for index in len(laserRanges):
+                sum2 += laserRanges[index]
+                index += 1
+
+    if sum1 > sum2:
+        return "left"
+
+    if sum2 > sum1:
+        return "right"
 
   i = 0
   Wall = 0        
 
 
-def main():
-    
-    
-  
-   
-  
-
+def main():  
     
     while not rospy.is_shutdown():
         left_side_speed = 5
@@ -98,6 +116,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    
-
