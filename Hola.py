@@ -7,7 +7,7 @@ from sensor_msgs.msg import LaserScan
 rover = Rover()
 def laser_Shit(rover):
     rover_laserSub = rospy.Subscriber("/leddar/leddarData", LaserScan, self.laser_callback, queue_size=1
-    rover.laserRanges = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    rover_laserRanges = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
