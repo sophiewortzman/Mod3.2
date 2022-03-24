@@ -38,13 +38,14 @@ def turn_right(rover, left_speed, right_speed):
 
 def main():
     distances = []
-    distances = rover.laser_distances.copy()
+    
     
     while not rospy.is_shutdown():
         left_side_speed = 5
         right_side_speed = 5
         rover.send_command(left_side_speed, right_side_speed)
-        
+        distances = rover.laser_distances
+        print("DISTANCE 1" + distances)
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         print (rover.laser_distances)
