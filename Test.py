@@ -4,31 +4,31 @@ import rospy
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
-        while(1):
-            left_side_speed = -1
-            right_side_speed = 1
+    while(1):
+        left_side_speed = -1
+        right_side_speed = 1
+        rover.send_command(left_side_speed, right_side_speed)
+        # Here is where you would place the desired heading variable.
+        if rover.heading > temp + 90:
+            left_side_speed = 0
+            right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
-            # Here is where you would place the desired heading variable.
-            if rover.heading > temp + 90:
-                left_side_speed = 0
-                right_side_speed = 0
-                rover.send_command(left_side_speed, right_side_speed)
-                break
+            break
         sleep(0.05)
         
   def turn_right(rover, left_speed, right_speed):
     temp = rover.heading
-        while(1):
-            left_side_speed = 1
-            right_side_speed = -1
+    while(1):
+        left_side_speed = 1
+        right_side_speed = -1
+        rover.send_command(left_side_speed, right_side_speed)
+        # Here is where you would place the desired heading variable.
+        if rover.heading < temp - 90:
+            left_side_speed = 0
+            right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
-            # Here is where you would place the desired heading variable.
-            if rover.heading < temp - 90:
-                left_side_speed = 0
-                right_side_speed = 0
-                rover.send_command(left_side_speed, right_side_speed)
-                break
-        sleep(0.05)
+            break
+    sleep(0.05)
 
     i = 0
     Wall = 0        
