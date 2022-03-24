@@ -52,7 +52,7 @@ def main():
     while (1):
         while (x < (len(rover.laser_distances)+1)):
             rover.laser_distances[x] = distances[x]
-            x++
+            x = x+1
     
     
   
