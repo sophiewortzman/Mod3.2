@@ -2,12 +2,9 @@ from qset_lib import Rover
 from time import sleep
 import rospy
 
-def main():
-    rover = Rover()
-    
-    def turn_left(rover, left_speed, right_speed):
+def turn_left(rover, left_speed, right_speed):
+    temp = rover.heading
         while(1):
-            temp = rover.heading
             left_side_speed = -1
             right_side_speed = 1
             rover.send_command(left_side_speed, right_side_speed)
@@ -18,10 +15,10 @@ def main():
                 rover.send_command(left_side_speed, right_side_speed)
                 break
         sleep(0.05)
-   
-    def turn_right(rover, left_speed, right_speed):
+        
+  def turn_right(rover, left_speed, right_speed):
+    temp = rover.heading
         while(1):
-            temp = rover.heading
             left_side_speed = 1
             right_side_speed = -1
             rover.send_command(left_side_speed, right_side_speed)
@@ -34,11 +31,19 @@ def main():
         sleep(0.05)
 
     i = 0
-    Wall = 0
+    Wall = 0        
+
+
+def main():
+    rover = Rover()
+    
+  
+   
+  
 
     
 
-    while not rospy.is_shutdown():
+      while not rospy.is_shutdown():
         left_side_speed = 5
         right_side_speed = 5
         rover.send_command(left_side_speed, right_side_speed)
@@ -48,7 +53,7 @@ def main():
         print (rover.laser_distances)
         for dist in rover.laser_distances:
             if dist < 1.5:
-                main.turn_left
+                turn_left
 #                 if left_side_speed == 5:
 #                     Wall = rover.heading
 #                 left_side_speed = -1
