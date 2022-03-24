@@ -3,7 +3,7 @@ from time import sleep
 import rospy
 
 rover = Rover()
-rover.laser_distances = [0] * 10
+rover.laser_distances = [0] * 30
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
