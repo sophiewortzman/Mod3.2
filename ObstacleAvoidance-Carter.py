@@ -7,7 +7,5 @@ def main():
   distances = []
   rover=Rover()
   while (1):
-    distances = rover.laser_distances.copy()
-    print (distances(1))
-  
+    print(rover.laser_distances(1))  
   
