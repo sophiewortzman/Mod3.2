@@ -62,7 +62,7 @@ def main():
         
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
-        print (laser.laserRanges[0])
+        print (rover.laserRanges[0])
         for dist in rover.laser_distances:
                if dist < 5:
                 turn_right(rover, left_side_speed, right_side_speed)
