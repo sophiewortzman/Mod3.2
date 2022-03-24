@@ -52,6 +52,7 @@ def main():
     while (1):
         x=0
         distances = []
+        rover.laser_distances = []
         while (x < (len(rover.laser_distances)+1)):
             rover.laser_distances[x] = distances[x]
             x = x+1
