@@ -34,7 +34,7 @@ def turn_right(rover, left_speed, right_speed):
 
 def reset_heading(rover, left_side_speed, right_side_speed):
     temp = rover.heading
-    for dist in laser_distances:
+    for dist in rover.laser_distances:
         if dist > 10:
             while(1):
                 left_side_speed = 1
