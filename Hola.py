@@ -49,7 +49,6 @@ def turn_right(rover, left_speed, right_speed):
 
 
 def main():
-    while (1):
 
     
     while not rospy.is_shutdown():
