@@ -50,17 +50,6 @@ def turn_right(rover, left_speed, right_speed):
 
 def main():
     while (1):
-        x=0
-        distances = []
-        rover.laser_distances = []
-        while (x < (len(rover.laser_distances)+1)):
-            rover.laser_distances[x] = distances[x]
-            x = x+1
-    
-    
-  
-   
-  
 
     
     while not rospy.is_shutdown():
@@ -70,7 +59,8 @@ def main():
         
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
-        print distances[1]
+        print("LENGTH:")
+        print (len(rover.laser_distances))
        
         for dist in rover.laser_distances:
                if dist < 5:
