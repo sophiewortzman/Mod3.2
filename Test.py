@@ -35,3 +35,32 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    
+def turn_left(rover, left_speed, right_speed):
+        while(1):
+            temp = rover.heading
+            left_side_speed = -1
+            right_side_speed = 1
+            rover.send_command(left_side_speed, right_side_speed)
+            # Here is where you would place the desired heading variable.
+                if rover.heading > temp + 90:
+                    left_side_speed = 0
+                    right_side_speed = 0
+                    rover.send_command(left_side_speed, right_side_speed)
+                    break
+        sleep(0.05)
+   
+def turn_right(rover, left_speed, right_speed):
+        while(1):
+            temp = rover.heading
+            left_side_speed = 1
+            right_side_speed = -1
+            rover.send_command(left_side_speed, right_side_speed)
+            # Here is where you would place the desired heading variable.
+                if rover.heading < temp - 90:
+                    left_side_speed = 0
+                    right_side_speed = 0
+                    rover.send_command(left_side_speed, right_side_speed)
+                    break
+        sleep(0.05)
