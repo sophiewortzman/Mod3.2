@@ -4,6 +4,7 @@ import rospy
 import math
 
 rover = Rover()
+rover.laser_distances = [0] * 30
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
