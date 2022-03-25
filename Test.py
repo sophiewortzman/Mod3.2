@@ -2,7 +2,8 @@ from qset_lib import Rover
 from time import sleep
 import rospy
 import math
-
+sum1 = 0
+sum2 = 0
 rover = Rover()
 rover.laser_distances = [0] * 30
 
@@ -103,6 +104,7 @@ def main():
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         print (rover.laser_distances)
+        print ("SUM1 SUM2" sum1 sum2)
         for dist in rover.laser_distances:
                if dist < 2:
                 
