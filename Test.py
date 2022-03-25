@@ -107,8 +107,10 @@ def main():
                     if side_to_favour == "right":
                         turn_right(rover, left_side_speed, right_side_speed)
                         
-                    else:
+                    if side_to_favour == "left":
                         turn_left(rover, left_side_speed, right_side_speed)
+                    else:
+                        continue
 #                if left_side_speed == 5:
 #                    Wall = rover.heading
 #                left_side_speed = -1
