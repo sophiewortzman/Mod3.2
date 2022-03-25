@@ -70,11 +70,9 @@ def side_to_favour(rover, laser_distances):
     while(count <= 30):
         if rover.laser_distances[count] == "inf":
            rover.laser_distances[count] = 200
-           count += 1
-
-    while (1):
         sum1 += rover.laser_distances[range(15, 30, 1)]
         sum2 += rover.laser_distances[range(0,14,1)]
+        count += 1
 
         if sum1 > sum2:
             return "left"
