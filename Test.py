@@ -77,7 +77,7 @@ def side_to_favour(rover, laserRanges):
     if sum2 > sum1:
         return "right"
         break
-    else
+    else:
         break
 
    
