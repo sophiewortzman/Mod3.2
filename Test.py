@@ -85,7 +85,7 @@ Wall = 0
 
 
 def main():  
-    count = 0
+    
   
     while not rospy.is_shutdown():
         left_side_speed = 5
@@ -98,6 +98,7 @@ def main():
         for dist in rover.laser_distances:
                if dist < 2:
                     while(count <= 30):
+                        count = 0
                         if rover.laser_distances[count] == "inf":
                            rover.laser_distances[count] = 200
                         count += 1
