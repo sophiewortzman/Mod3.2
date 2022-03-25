@@ -57,7 +57,7 @@ def find_heading(rover, heading, objective):
     m = (objective[0]-self.x)/(objective[1]-self.y)
 
     #take the arctan of the slope to find the heading angle
-    return math.atan(m) x 180 / math.pi  
+    return math.atan(m) * 180 / math.pi  
 
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
 def side_to_favour(rover, laserRanges):
