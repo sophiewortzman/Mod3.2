@@ -69,6 +69,7 @@ def side_to_favour(rover, laserRanges):
     for index in len(laserRanges):
         if laserRanges[index] == "inf":
             sum1 += 100
+            continue
         sum1 += laserRanges[index]
         index += 1
 
@@ -77,6 +78,7 @@ def side_to_favour(rover, laserRanges):
             for index in len(laserRanges):
                 if laserRanges[index] == "inf":
                     sum2 += 100
+                    continue
                 sum2 += laserRanges[index]
                 index += 1
 
