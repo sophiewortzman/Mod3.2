@@ -70,15 +70,15 @@ def side_to_favour(rover, laserRanges):
         sum1 += rover.laser_distances[range(15, 30, 1)]
         sum2 += rover.laser_distances[range(0,14,1)]
 
-    if sum1 > sum2:
-        return "left"
-        break
+        if sum1 > sum2:
+            return "left"
+            break
 
-    if sum2 > sum1:
-        return "right"
-        break
-    else:
-        break
+        if sum2 > sum1:
+            return "right"
+            break
+        else:
+            break
 
    
 Wall = 0        
