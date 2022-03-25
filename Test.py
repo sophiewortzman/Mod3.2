@@ -97,8 +97,9 @@ def main():
         print (rover.laser_distances)
         for dist in rover.laser_distances:
                if dist < 2:
+                    count = 0
+
                     while(count <= 30):
-                        count = 0
                         if rover.laser_distances[count] == "inf":
                            rover.laser_distances[count] = 200
                         count += 1
