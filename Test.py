@@ -84,13 +84,13 @@ def side_to_favour(rover, laser_distances):
         
         count += 1
 
-        if sumLeft > sumRight:
-            return "left"
-            break
+        #if sumLeft > sumRight:
+        return "left"
+            #break
 
-        if sumRight > sumLeft:
-            return "right"
-            break
+        #if sumRight > sumLeft:
+            #return "right"
+            #break
         else:
             break
 
