@@ -54,11 +54,11 @@ def reset_heading(rover, left_side_speed, right_side_speed):
 
     #find the slope between the two points, x2-x1 on top to make it relative to the y-axis (0 degrees)
 
-    m = (objective[0]-self.x)/(objective[1]-self.y)
+        m = (objective[0]-self.x)/(objective[1]-self.y)
 
     #take the arctan of the slope to find the heading angle
 
-    return math.atan(m)
+        return math.atan(m)
 
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
 def side_to_favour(rover, laserRanges):
