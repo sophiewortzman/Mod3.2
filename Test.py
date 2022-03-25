@@ -104,7 +104,7 @@ def main():
         for dist in rover.laser_distances:
                if dist < 2:
                 
-                    if side_to_favour == "left":
+                    if side_to_favour == "right":
                         turn_left(rover, left_side_speed, right_side_speed)
                     else:
                         turn_right(rover, left_side_speed, right_side_speed)
