@@ -78,7 +78,7 @@ def side_to_favour(rover, laser_distances):
         else:
             if rover.laser_distances[count] == "inf":
                 sum1 += 200
-            continue
+                continue
             else:
                 sum1 += rover.laser_distances[count]
          
