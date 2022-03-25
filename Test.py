@@ -97,9 +97,9 @@ def main():
         print (rover.laser_distances)
         for dist in rover.laser_distances:
                if dist < 2:
-                    while(count <31):
-                        if rover.laser_distances[count] == "inf":
-                            rover.laser_distances[count] = 200
+                    while(count <= 30):
+                        if rover.laser_distances[count] == float(inf):
+                           rover.laser_distances[count] = 200
                         count += 1
                     count = 0
                     if side_to_favour == "left":
