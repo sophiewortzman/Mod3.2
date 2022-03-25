@@ -103,7 +103,6 @@ def main():
                         if rover.laser_distances[count] == "inf":
                            rover.laser_distances[count] = 200
                            count += 1
-                    count = 0
                     if side_to_favour == "left":
                         turn_left(rover, left_side_speed, right_side_speed)
                     else:
