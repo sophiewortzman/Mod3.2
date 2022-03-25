@@ -42,7 +42,7 @@ def reset_heading(rover, left_side_speed, right_side_speed):
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
       # Here is where you would place the desired heading variable.
-                if rover.heading = range(-1, 1):
+                if rover.heading == range(-1, 1):
                     left_side_speed = 0
                     right_side_speed = 0
                     rover.send_command(left_side_speed, right_side_speed)
@@ -100,8 +100,10 @@ def main():
         print (rover.laser_distances)
         for dist in rover.laser_distances:
                if dist < 5:
-                turn_right(rover, left_side_speed, right_side_speed)
-                reset_heading(rover, left_side_speed, right_side_speed)
+                if side_to_favour = "left":
+                    turn_left(rover, left_side_speed, right_side_speed)
+                else:
+                    turn_right(rover, left_side_speed, right_side_speed)
 #                if left_side_speed == 5:
 #                    Wall = rover.heading
 #                left_side_speed = -1
