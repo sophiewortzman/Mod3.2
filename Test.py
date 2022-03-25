@@ -66,13 +66,16 @@ def side_to_favour(rover, laserRanges):
     index = 0
 
     for index in len(laserRanges):
-
+        if laserRanges[index] == "inf":
+            sum1 += 100
         sum1 += laserRanges[index]
         index += 1
 
         if index >= (len(laserRanges)/2):
 
             for index in len(laserRanges):
+                if laserRanges[index] == "inf":
+                    sum2 += 100
                 sum2 += laserRanges[index]
                 index += 1
 
