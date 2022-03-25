@@ -65,6 +65,12 @@ def side_to_favour(rover, laserRanges):
     sum1 = 0
     sum2 = 0
     index = 0
+    count = 0
+
+    while(count <= 30):
+        if rover.laser_distances[count] == "inf":
+            rover.laser_distances[count] = 200
+            count += 1
 
     while (1):
         sum1 += rover.laser_distances[range(15, 30, 1)]
@@ -97,12 +103,7 @@ def main():
         print (rover.laser_distances)
         for dist in rover.laser_distances:
                if dist < 2:
-                    count = 0
-
-                    while(count <= 30):
-                        if rover.laser_distances[count] == "inf":
-                           rover.laser_distances[count] = 200
-                           count += 1
+                
                     if side_to_favour == "left":
                         turn_left(rover, left_side_speed, right_side_speed)
                     else:
