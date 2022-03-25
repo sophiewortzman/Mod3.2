@@ -102,10 +102,10 @@ def main():
                             rover.laser_distances[count] = 200
                         count += 1
                     count = 0
-                if side_to_favour == "left":
-                    turn_left(rover, left_side_speed, right_side_speed)
-                else:
-                    turn_right(rover, left_side_speed, right_side_speed)
+                    if side_to_favour == "left":
+                        turn_left(rover, left_side_speed, right_side_speed)
+                    else:
+                        turn_right(rover, left_side_speed, right_side_speed)
 #                if left_side_speed == 5:
 #                    Wall = rover.heading
 #                left_side_speed = -1
