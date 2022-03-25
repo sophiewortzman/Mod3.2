@@ -2,8 +2,6 @@ from qset_lib import Rover
 from time import sleep
 import rospy
 import math
-sum1 = 0
-sum2 = 0
 rover = Rover()
 rover.laser_distances = [0] * 30
 
@@ -63,33 +61,33 @@ def find_heading(rover, heading, objective):
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
 def side_to_favour(rover, laser_distances):
     
-    sum1 = 0
-    sum2 = 0
+    sumRight = 0
+    sumLeft = 0
     index = 0
     count = 0
 
     while(count <= 30):
         if count < 15:
            if rover.laser_distances[count] == "inf":
-            sum2 += 200
+            sumRight += 200
             continue
            else:
-                sum2 += rover.laser_distances[count]
+                sumRight += rover.laser_distances[count]
         else:
             if rover.laser_distances[count] == "inf":
-                sum1 += 200
+                sumLeft += 200
                 continue
             else:
-                sum1 += rover.laser_distances[count]
+                sumLeft += rover.laser_distances[count]
          
         
         count += 1
 
-        if sum1 > sum2:
+        if sumLeft > sumRight:
             return "left"
             break
 
-        if sum2 > sum1:
+        if sumRight > sumLeft:
             return "right"
             break
         else:
