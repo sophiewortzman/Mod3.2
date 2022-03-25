@@ -82,8 +82,8 @@ def side_to_favour(rover, laserRanges):
     if sum2 > sum1:
         return "right"
 
-  i = 0
-  Wall = 0        
+   
+Wall = 0        
 
 
 def main():  
