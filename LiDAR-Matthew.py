@@ -61,7 +61,10 @@ def find_heading(rover, objective):
     m = (objective[0]-rover.x)/(objective[1]-rover.y)
 
     #take the arctan of the slope to find the heading angle
-    return math.atan(m) * 180 / math.pi  
+    if rover.y < objective.y:
+        return math.atan(m) * 180 / math.pi * (-1)
+    else:
+        return math.atan(m) * 180 / math.pi  
 
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
 def side_to_favour():
