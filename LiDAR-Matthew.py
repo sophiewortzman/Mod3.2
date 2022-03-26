@@ -148,7 +148,7 @@ def main():
             if dist > 5:
                 
                 
-                print(find_heading(rover, objective.x, objective.y))
+                print(find_heading(rover, objective.y, objective.x))
                     
                 
 
