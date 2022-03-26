@@ -1,45 +1,141 @@
-#Mathew's LiDAR Code
-# Matt's Lidar Branch
+from qset_lib import Rover
+from time import sleep
+import rospy
+import math
+rover = Rover()
+rover.laser_distances = [0] * 30
+sum1 = 0
+sum2 = 0
 
-# Given by client:
+def turn_left(rover, left_speed, right_speed):
+    temp = rover.heading
+    while(1):
+        left_side_speed = -1
+        right_side_speed = 1
+        rover.send_command(left_side_speed, right_side_speed)
+        # Here is where you would place the desired heading variable.
+        if rover.heading > temp + 90:
+            left_side_speed = 0
+            right_side_speed = 0
+            rover.send_command(left_side_speed, right_side_speed)
+        print("Speed: " + left_side_speed)
+        break
+        sleep(0.05)
+        
+def turn_right(rover, left_speed, right_speed):
+  temp = rover.heading
+  while(1):
+      left_side_speed = 1
+      right_side_speed = -1
+      rover.send_command(left_side_speed, right_side_speed)
+      # Here is where you would place the desired heading variable.
+      if rover.heading < temp - 90:
+          left_side_speed = 0
+          right_side_speed = 0
+          rover.send_command(left_side_speed, right_side_speed)
+      break
+  sleep(0.05)
 
-# start of laser scan code
-from sensor_msgs.msg import LaserScan
+def reset_heading(rover, left_side_speed, right_side_speed):
+    temp = rover.heading
+    for dist in laser_distances:
+        if dist > 10:
+            while(1):
+                left_side_speed = 1
+                right_side_speed = -1
+                rover.send_command(left_side_speed, right_side_speed)
+      # Here is where you would place the desired heading variable.
+                if rover.heading == range(-1, 1):
+                    left_side_speed = 0
+                    right_side_speed = 0
+                    rover.send_command(left_side_speed, right_side_speed)
+                break
+            sleep(0.05)
+  
+#call this to find the new heading angle after the rover turns (returns heading angle)
+def find_heading(rover, heading, objective):
+
+    #find the slope between the two points, x2-x1 on top to make it relative to the y-axis (0 degrees)
+    m = (objective[0]-self.x)/(objective[1]-self.y)
+
+    #take the arctan of the slope to find the heading angle
+    return math.atan(m) * 180 / math.pi  
+
+#call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
+def side_to_favour(rover, laser_distances):
+    
+    sumRight = 0
+    sumLeft = 0
+    index = 0
+    count = 0
+
+    while(count <= 29):
+        if count <= 15:
+           if rover.laser_distances[count] == "inf":
+            sumRight += 200
+            continue
+           if count <= 15:
+                sumRight += rover.laser_distances[count]
+        if count >= 15:
+            if rover.laser_distances[count] == "inf":
+                sumLeft += 200
+                continue
+            if count >= 15:
+                sumLeft += rover.laser_distances[count]
+         
+        
+        count += 1
+
+        if sumLeft > sumRight:
+            return "left"
+            break
+
+        if sumRight > sumLeft:
+            return "right"
+            break
+        else:
+            break
+
+   
+Wall = 0        
 
 
-class LaserListener:
+def main():  
+    
+  
+    while not rospy.is_shutdown():
+        left_side_speed = 5
+        right_side_speed = 5
+        rover.send_command(left_side_speed, right_side_speed)
+        
+        
+        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+        print (rover.laser_distances)
+        print ("SUM" + sum1 + sum2)
+       # print ("SUM1 SUM2" sum1 sum2)
+        for dist in rover.laser_distances:
+               if dist < 2:
+                
+                    if side_to_favour(rover, rover.laser_distances) == "right":
+                        turn_right(rover, left_side_speed, right_side_speed)
+                        
+                        
+                    if side_to_favour(rover, rover.laser_distances) == "left":
+                        turn_left(rover, left_side_speed, right_side_speed)
+                        
 
-    def __init__(self):
-        self.laserSub = rospy.Subscriber("/leddar/leddarData", LaserScan, self.laser_callback, queue_size=1)
-        self.laserRanges = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+#                if left_side_speed == 5:
+#                    Wall = rover.heading
+#                left_side_speed = -1
+#                right_side_speed = 1
+#                rover.send_command(left_side_speed, right_side_speed)
+#            if rover.heading > Wall + 90:
+#                left_side_speed = 0
+#                right_side_speed = 0
+#                rover.send_command(left_side_speed, right_side_speed)
+    sleep(0.05)
 
-    def laser_callback(self, msg):
-        # type: (LaserScan) -> None
-        self.laserRanges = msg.ranges
 
+if __name__ == "__main__":
+    main()
 
-# end of laser scan code access laserRanges for an array of all measured distances from the laser sensors
-
-# Things that might be helpful:
-
-# import lidar library
-import ydlidar
-
-# allows the lidar to be referred to as laser
-laser = ydlidar.CYdLidar()
-
-# possible lidar properties
-laser.setlidaropt(ydlidar.LidarPropSerialPort, port)
-laser.setlidaropt(ydlidar.LidarPropSerialBaudrate, 512000)
-laser.setlidaropt(ydlidar.LidarPropLidarType, ydlidar.TYPE_TOF)
-laser.setlidaropt(ydlidar.LidarPropDeviceType, ydlidar.YDLIDAR_TYPE_SERIAL)
-laser.setlidaropt(ydlidar.LidarPropScanFrequency, 10.0)
-laser.setlidaropt(ydlidar.LidarPropSampleRate, 20)
-laser.setlidaropt(ydlidar.LidarPropSingleChannel, False)
-
-# makes sure lidar works
-r = laser.doProcessSimple(scan)
-if r:
-    print("Scan received[", scan.stamp, "]:", scan.points.size(), "ranges is [", 1.0 / scan.config.scan_time, "]Hz")
-else:
-    print("Failed to get Lidar Data.")
