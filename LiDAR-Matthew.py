@@ -6,6 +6,7 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
+objective = [4,2]
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
@@ -54,7 +55,7 @@ def reset_heading(rover, left_side_speed, right_side_speed):
             sleep(0.05)
   
 #call this to find the new heading angle after the rover turns (returns heading angle)
-def find_heading(rover, heading, objective):
+def find_heading(objective):
 
     #find the slope between the two points, x2-x1 on top to make it relative to the y-axis (0 degrees)
     m = (objective[0]-self.x)/(objective[1]-self.y)
@@ -129,6 +130,7 @@ def main():
                 
                 whichWay = side_to_favour()
                 print(whichWay)
+
                 if whichWay == "right":
                     print(whichWay)
                     turn_right(rover, left_side_speed, right_side_speed)
@@ -138,9 +140,7 @@ def main():
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
                     sleep(0.05)
-                else:
-                    #print("NOT WORKING")
-                    sleep(0.05)                
+
 
 #                if left_side_speed == 5:
 #                    Wall = rover.heading
