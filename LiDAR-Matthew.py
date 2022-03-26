@@ -6,7 +6,6 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
-
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
     while(1):
@@ -21,7 +20,7 @@ def turn_left(rover, left_speed, right_speed):
         print("Speed: " + left_side_speed)
         break
         sleep(0.05)
-        
+        #test comment
 def turn_right(rover, left_speed, right_speed):
   temp = rover.heading
   while(1):
@@ -139,3 +138,4 @@ def main():
 if __name__ == "__main__":
     main()
 
+print("Test working")
