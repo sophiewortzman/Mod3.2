@@ -1,3 +1,4 @@
+from cmath import inf
 from qset_lib import Rover
 from time import sleep
 import rospy
@@ -73,14 +74,14 @@ def side_to_favour():
 
         if count <= 15:
 
-            if rover.laser_distances[count] == "inf":
+            if rover.laser_distances[count] == float(inf):
                 sumRight += 200
                 continue
             sumRight += rover.laser_distances[count]
 
         if count >= 15:
 
-            if rover.laser_distances[count] == "inf":
+            if rover.laser_distances[count] == float(inf):
                 sumLeft += 200
                 continue
             sumLeft += rover.laser_distances[count]
