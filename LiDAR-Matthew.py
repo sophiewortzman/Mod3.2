@@ -137,7 +137,7 @@ def main():
 #                left_side_speed = 0
 #                right_side_speed = 0
 #                rover.send_command(left_side_speed, right_side_speed)
-    sleep(0.05)
+        sleep(0.05)
 
 
 if __name__ == "__main__":
