@@ -56,7 +56,7 @@ def reset_heading(rover, left_side_speed, right_side_speed):
             sleep(0.3)
   
 #call this to find the new heading angle after the rover turns (returns heading angle)
-def find_heading(rover, objective.y, objective.x):
+def find_heading(rover, objective):
 
     #find the slope between the two points, x2-x1 on top to make it relative to the y-axis (0 degrees)
     m = (objective.x-rover.x)/(objective.y-rover.y)
@@ -148,7 +148,7 @@ def main():
             if dist > 5:
                 
                 
-                print(find_heading(rover, objective.y, objective.x))
+                print(find_heading(rover, objective))
                     
                 
 
