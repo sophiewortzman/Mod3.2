@@ -52,7 +52,7 @@ def find_heading(rover, objectivex, objectivey):
     else:
         return math.atan(m) * 180 / math.pi  
 
-def reset_heading(rover, left_side_speed, right_side_speed, find_heading(rover, objectivex, objectivey)):
+def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
     temp = rover.heading
     for dist in rover.laser_distances:
         if dist > 5:
@@ -151,7 +151,7 @@ def main():
                 
                 print(find_heading(rover, objectivex, objectivey))
                 
-                reset_heading(rover, left_side_speed, right_side_speed)
+                reset_heading(rover, left_side_speed, right_side_speed, find_heading)
                     
                 
 
