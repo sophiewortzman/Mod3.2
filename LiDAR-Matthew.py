@@ -72,7 +72,7 @@ def side_to_favour():
     while(count <= 29):
 
         if count <= 15:
-            if rover.laser_distances[count] != "inf":
+            if rover.laser_distances[count] != float('inf'):
                 sumRight += rover.laser_distances[count]
                 print("value:", rover.laser_distances[count])
 
@@ -82,10 +82,10 @@ def side_to_favour():
         
         if count >= 15:
 
-            if rover.laser_distances[count] != "inf":
+            if rover.laser_distances[count] != float('inf'):
                 sumLeft += rover.laser_distances[count]
                 print("value:", rover.laser_distances[count])
-                
+
             else:
                 print("Adding 200")
                 sumLeft += 200
