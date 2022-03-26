@@ -88,11 +88,11 @@ def side_to_favour():
         count += 1
 
     if sumLeft > sumRight:
-        return "left"
+        return 0
             
 
     if sumRight > sumLeft:
-        return "right"
+        return 1
             
                
 Wall = 0        
@@ -115,12 +115,12 @@ def main():
                 
                 whichWay = side_to_favour()
                 print(whichWay)
-                if whichWay == "right":
+                if whichWay == 1:
                     print(whichWay)
                     turn_right(rover, left_side_speed, right_side_speed)
                     sleep(0.05)    
                         
-                if whichWay == "left":
+                if whichWay == 0:
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
                     sleep(0.05)
