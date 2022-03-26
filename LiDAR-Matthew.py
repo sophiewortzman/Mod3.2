@@ -88,11 +88,11 @@ def side_to_favour():
         count += 1
 
     if sumLeft > sumRight:
-        return 0
+        return "left"
             
 
     if sumRight > sumLeft:
-        return 1
+        return "right"
             
                
 Wall = 0        
@@ -113,14 +113,14 @@ def main():
         for dist in rover.laser_distances:
                if dist < 2:
                 
-                whichWay = side_to_favour
+                whichWay = side_to_favour()
                 print(whichWay)
-                if whichWay == 1:
+                if whichWay == "right":
                     print(whichWay)
                     turn_right(rover, left_side_speed, right_side_speed)
                     sleep(0.05)    
                         
-                if whichWay == 0:
+                if whichWay == "left":
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
                     sleep(0.05)
