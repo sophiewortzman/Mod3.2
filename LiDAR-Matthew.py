@@ -71,7 +71,7 @@ def side_to_favour():
 
     while(count <= 29):
 
-        if count <= 15:
+        if count < 15:
 
             if rover.laser_distances[count] == "inf":
                 print("ADDING 200")
