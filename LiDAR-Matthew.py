@@ -114,7 +114,7 @@ def main():
                if dist < 2:
                 
                 whichWay = side_to_favour
-
+                print(whichWay)
                 if whichWay == "right":
                     print(whichWay)
                     turn_right(rover, left_side_speed, right_side_speed)
@@ -125,7 +125,7 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
 
                 else:
-                    print("NOT WORKING")
+                    #print("NOT WORKING")
                         
 
 #                if left_side_speed == 5:
