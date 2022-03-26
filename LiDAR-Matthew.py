@@ -63,7 +63,7 @@ def find_heading(rover, heading, objective):
     return math.atan(m) * 180 / math.pi  
 
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
-def side_to_favour():
+def side_to_favour(rover.laser_distances[]):
     
     sumRight = 0
     sumLeft = 0
@@ -113,11 +113,11 @@ def main():
         for dist in rover.laser_distances:
                if dist < 2:
                 
-                    if side_to_favour() == "right":
+                    if side_to_favour(rover, rover.laser_distances) == "right":
                         turn_right(rover, left_side_speed, right_side_speed)
                         
                         
-                    if side_to_favour() == "left":
+                    if side_to_favour(rover, rover.laser_distances) == "left":
                         turn_left(rover, left_side_speed, right_side_speed)
                         
 
@@ -136,4 +136,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-print("Test working")
