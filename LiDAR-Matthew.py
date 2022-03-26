@@ -132,14 +132,14 @@ def main():
                 whichWay = side_to_favour()
                 print(whichWay)
 
-            if whichWay == "right":
-                print(whichWay)
-                turn_right(rover, left_side_speed, right_side_speed)
+                if whichWay == "right":
+                    print(whichWay)
+                    turn_right(rover, left_side_speed, right_side_speed)
                        
                         
-            if whichWay == "left":
-                print(whichWay)
-                turn_left(rover, left_side_speed, right_side_speed)
+                if whichWay == "left":
+                    print(whichWay)
+                    turn_left(rover, left_side_speed, right_side_speed)
 
 #             if dist > 5:
                 
