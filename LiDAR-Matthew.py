@@ -110,8 +110,6 @@ def main():
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         print (rover.laser_distances)
-        print ("SUM" + sum1 + sum2)
-       # print ("SUM1 SUM2" sum1 sum2)
         for dist in rover.laser_distances:
                if dist < 2:
                 
