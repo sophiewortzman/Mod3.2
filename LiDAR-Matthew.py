@@ -134,12 +134,12 @@ def main():
                 if whichWay == "right":
                     print(whichWay)
                     turn_right(rover, left_side_speed, right_side_speed)
-                    sleep(0.05)    
+                    sleep(3)    
                         
                 if whichWay == "left":
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
-                    sleep(0.05)
+                    sleep(3)
 
 
 #                if left_side_speed == 5:
