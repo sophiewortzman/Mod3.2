@@ -118,15 +118,15 @@ def main():
                 if whichWay == "right":
                     print(whichWay)
                     turn_right(rover, left_side_speed, right_side_speed)
-                        
+                    sleep(0.05)    
                         
                 if whichWay == "left":
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
-
+                    sleep(0.05)
                 else:
                     #print("NOT WORKING")
-                        
+                    sleep(0.05)                
 
 #                if left_side_speed == 5:
 #                    Wall = rover.heading
@@ -137,7 +137,7 @@ def main():
 #                left_side_speed = 0
 #                right_side_speed = 0
 #                rover.send_command(left_side_speed, right_side_speed)
-        sleep(0.05)
+        
 
 
 if __name__ == "__main__":
