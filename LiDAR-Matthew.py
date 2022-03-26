@@ -93,6 +93,9 @@ def side_to_favour():
 
     if sumRight > sumLeft:
         return "right"
+
+    else:
+        return "NOT WORKING"
             
                
 Wall = 0        
