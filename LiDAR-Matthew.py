@@ -126,19 +126,24 @@ def main():
         print (rover.laser_distances)
 
         for dist in rover.laser_distances:
-               if dist < 2:
+                      
+            if dist < 2:
                 
                 whichWay = side_to_favour()
                 print(whichWay)
 
-                if whichWay == "right":
-                    print(whichWay)
-                    turn_right(rover, left_side_speed, right_side_speed)
+            if whichWay == "right":
+                print(whichWay)
+                turn_right(rover, left_side_speed, right_side_speed)
                        
                         
-                if whichWay == "left":
-                    print(whichWay)
-                    turn_left(rover, left_side_speed, right_side_speed)
+            if whichWay == "left":
+                print(whichWay)
+                turn_left(rover, left_side_speed, right_side_speed)
+
+            if dist > 5:
+
+                print(find_heading(objective))
                     
                 
 
