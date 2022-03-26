@@ -10,7 +10,7 @@ laser = LaserListener()
 x=
 y=
 def get_heading(x,y):
-    distanceX = x -rover.x
+    distanceX = x - rover.x
     distanceY = y - rover.y
     heading = math.atan(distanceY/distanceX)
     heading = heading * (180/(math.pi))
