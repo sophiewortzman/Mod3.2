@@ -6,6 +6,7 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
+
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
     while(1):
@@ -20,7 +21,7 @@ def turn_left(rover, left_speed, right_speed):
         print("Speed: " + left_side_speed)
         break
         sleep(0.05)
-        #test comment
+        
 def turn_right(rover, left_speed, right_speed):
   temp = rover.heading
   while(1):
@@ -43,6 +44,7 @@ def reset_heading(rover, left_side_speed, right_side_speed):
                 left_side_speed = 1
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
+
       # Here is where you would place the desired heading variable.
                 if rover.heading == range(-1, 1):
                     left_side_speed = 0
@@ -61,7 +63,7 @@ def find_heading(rover, heading, objective):
     return math.atan(m) * 180 / math.pi  
 
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
-def side_to_favour(rover, laser_distances):
+def side_to_favour(rover, rover.laser_distances):
     
     sumRight = 0
     sumLeft = 0
@@ -70,32 +72,28 @@ def side_to_favour(rover, laser_distances):
 
     while(count <= 29):
         if count <= 15:
-           if rover.laser_distances[count] == "inf":
-            sumRight += 200
-            continue
-           if count <= 15:
-                sumRight += rover.laser_distances[count]
+
+            if rover.laser_distances[count] == "inf":
+                sumRight += 200
+                continue
+            sumRight += rover.laser_distances[count]
+
         if count >= 15:
             if rover.laser_distances[count] == "inf":
                 sumLeft += 200
                 continue
-            if count >= 15:
-                sumLeft += rover.laser_distances[count]
-         
-        
+            sumLeft += rover.laser_distances[count]
+                
         count += 1
 
-        if sumLeft > sumRight:
-            return "left"
-            break
+    if sumLeft > sumRight:
+        return "left"
+            
 
-        if sumRight > sumLeft:
-            return "right"
-            break
-        else:
-            break
-
-   
+    if sumRight > sumLeft:
+        return "right"
+            
+               
 Wall = 0        
 
 
