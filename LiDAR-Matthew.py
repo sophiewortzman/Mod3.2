@@ -91,9 +91,9 @@ def side_to_favour():
             print("value:", rover.laser_distances[count])    
         count += 1
 
-    print("sum1:", sum1)
-    print("sum2:", sum2)
-    
+    print("sumLeft:", sumLeft)
+    print("sumRight:", sumRight)
+
     if sumLeft > sumRight:
         return "left"
             
