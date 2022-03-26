@@ -61,11 +61,11 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
                 
-                lowerBound = find_heading-1
-                upperbound = find_heading+1
+                tempHeading = find_heading
+           
                 
       # Here is where you would place the desired heading variable.
-                if (lowerBound<=rover.heading<=upperBound):
+                if (tempHeading-1<=rover.heading<=tempHeading+1):
                 #if rover.heading == range(lowerBound, upperBound):
                     left_side_speed = 0
                     right_side_speed = 0
