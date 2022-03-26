@@ -6,8 +6,8 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
-objective.x = 4
-objective.y = 2
+objectivex = 4
+objectivey = 2
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
@@ -56,13 +56,13 @@ def reset_heading(rover, left_side_speed, right_side_speed):
             sleep(0.3)
   
 #call this to find the new heading angle after the rover turns (returns heading angle)
-def find_heading(rover, objective):
+def find_heading(rover, objectivex, objectivey):
 
     #find the slope between the two points, x2-x1 on top to make it relative to the y-axis (0 degrees)
-    m = (objective.x-rover.x)/(objective.y-rover.y)
+    m = (objectivex-rover.x)/(objectivey-rover.y)
 
     #take the arctan of the slope to find the heading angle
-    if rover.y < objective.y:
+    if rover.y < objectivey:
         return math.atan(m) * 180 / math.pi * (-1)
     else:
         return math.atan(m) * 180 / math.pi  
@@ -148,7 +148,7 @@ def main():
             if dist > 5:
                 
                 
-                print(find_heading(rover, objective))
+                print(find_heading(rover, objectivex, objectivey))
                     
                 
 
