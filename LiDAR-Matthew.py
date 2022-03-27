@@ -56,11 +56,15 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
     temp = rover.heading
     for dist in rover.laser_distances:
         while(1):
-            left_side_speed = 1
-            right_side_speed = -1
-            rover.send_command(left_side_speed, right_side_speed)
-                
+            
             tempHeading = find_heading(rover, objectivex, objectivey)
+            
+            if (tempHeading-1 >= rover.heading >= tempHeading+1):
+                left_side_speed = 1
+                right_side_speed = -1
+                rover.send_command(left_side_speed, right_side_speed)
+                
+            
            
                 
       # Here is where you would place the desired heading variable.
