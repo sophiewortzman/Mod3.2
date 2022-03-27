@@ -159,7 +159,7 @@ def main():
                 reset_heading(rover, left_side_speed, right_side_speed, find_heading)
                 break
                 
-    sleep(0.05)
+        sleep(0.05)
                 
 
 
