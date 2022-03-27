@@ -66,8 +66,8 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
       # Here is where you would place the desired heading variable.
             if (tempHeading-1<=rover.heading<=tempHeading+1):
                 #if rover.heading == range(lowerBound, upperBound):
-                left_side_speed = 5
-                right_side_speed = 5
+                left_side_speed = 2
+                right_side_speed = 2
                 rover.send_command(left_side_speed, right_side_speed)
             sleep(0.05)    
             break
@@ -127,8 +127,8 @@ def main():
     
   
     while not rospy.is_shutdown():
-        left_side_speed = 5
-        right_side_speed = 5
+        left_side_speed = 2
+        right_side_speed = 2
         rover.send_command(left_side_speed, right_side_speed)
         
         
