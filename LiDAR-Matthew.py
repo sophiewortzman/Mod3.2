@@ -47,10 +47,10 @@ def find_heading(rover, objectivex, objectivey):
     m = (objectivey-rover.y)/(objectivex-rover.x)
 
     #take the arctan of the slope to find the heading angle
-    if rover.y < objectivey:
-        return math.atan(m) * 180 / math.pi * (-1)
-    else:
-        return math.atan(m) * 180 / math.pi  
+    #if rover.y < objectivey:
+    return math.atan(m) * 180 / math.pi * (-1)
+    #else:
+        #return math.atan(m) * 180 / math.pi 
 
 def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
     temp = rover.heading
