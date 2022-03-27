@@ -169,6 +169,7 @@ def main():
                 if (tempHeading - 1 >= rover.heading or rover.heading >= tempHeading + 1):
                     reset_heading(rover, left_side_speed, right_side_speed, find_heading)
                 
+                sleep(0.3)
                 break
                 
         sleep(0.05)
