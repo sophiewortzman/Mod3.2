@@ -54,7 +54,7 @@ def find_heading(rover, objectivex, objectivey):
 
 def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
     temp = rover.heading
-    for dist in rover.laser_distances
+    for dist in rover.laser_distances:
         while(1):
             left_side_speed = 1
             right_side_speed = -1
