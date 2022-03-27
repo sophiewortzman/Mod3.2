@@ -171,7 +171,7 @@ def main():
                 
                 break
                 
-        sleep(0.5)
+        sleep(0.05)
                 
 
 
