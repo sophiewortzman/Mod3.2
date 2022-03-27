@@ -158,7 +158,7 @@ def main():
                 print(find_heading(rover, objectivex, objectivey))
                 
                 reset_heading(rover, left_side_speed, right_side_speed, find_heading)
-                sleep(3)
+                
                     
                 
 
