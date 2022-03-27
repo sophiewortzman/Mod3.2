@@ -157,10 +157,18 @@ def main():
 
             if dist > 5:
                 
-                
+                tempHeading = find_heading(rover, objectivex, objectivey)
                 print(find_heading(rover, objectivex, objectivey))
                 
-                reset_heading(rover, left_side_speed, right_side_speed, find_heading)
+                
+                if (tempHeading - 1 <= rover.heading <= tempHeading + 1):
+                    left_side_speed = 2
+                    right_side_speed = 2
+                    rover.send_command(left_side_speed, right_side_speed)
+                
+                if (tempHeading - 1 >= rover.heading >= tempHeading + 1):
+                    reset_heading(rover, left_side_speed, right_side_speed, find_heading)
+                
                 break
                 
         sleep(0.05)
