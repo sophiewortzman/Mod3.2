@@ -131,7 +131,13 @@ def main():
     
   
     while not rospy.is_shutdown():
-        left_side_speed = 2
+        
+        if (rover.x == objectivex) and (rover.y == objectivey):
+            left_side_speed = 0 
+        right_side_speed = 0
+        rover.send_command(left_side_speed, right_side_speed)
+        
+        left_side_speed = 2 
         right_side_speed = 2
         rover.send_command(left_side_speed, right_side_speed)
         
