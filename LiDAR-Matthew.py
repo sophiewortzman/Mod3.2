@@ -141,7 +141,7 @@ def main():
             if dist < 2:
                 
                 whichWay = side_to_favour()
-                print(whichWay)
+                #print(whichWay)
 
                 if whichWay == "right":
                     print(whichWay)
