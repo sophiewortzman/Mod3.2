@@ -44,7 +44,7 @@ def turn_right(rover, left_speed, right_speed):
 def find_heading(rover, objectivex, objectivey):
 
     #find the slope between the two points, x2-x1 on top to make it relative to the y-axis (0 degrees)
-    m = (objectivex-rover.x)/(objectivey-rover.y)
+    m = (objectivey-rover.y)/(objectivex-rover.x)
 
     #take the arctan of the slope to find the heading angle
     if rover.y < objectivey:
