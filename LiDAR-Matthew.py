@@ -38,8 +38,6 @@ def turn_right(rover, left_speed, right_speed):
       break
   sleep(0.3)
 
-
-  
 #call this to find the new heading angle after the rover turns (returns heading angle)
 def find_heading(rover, objectivex, objectivey):
 
@@ -121,11 +119,7 @@ def side_to_favour():
         print("equal")
 
     else:
-        return "NOT WORKING"
-            
-               
-Wall = 0        
-
+        return "NOT WORKING"       
 
 def main():  
     
@@ -174,27 +168,10 @@ def main():
                 
                 if (tempHeading - 1 >= rover.heading) or (rover.heading >= tempHeading + 1):
                     reset_heading(rover, left_side_speed, right_side_speed, find_heading)
-                    
-                    
-                
-                
+                                    
                 break
                 
         sleep(0.05)
-                
-
-
-#                if left_side_speed == 5:
-#                    Wall = rover.heading
-#                left_side_speed = -1
-#                right_side_speed = 1
-#                rover.send_command(left_side_speed, right_side_speed)
-#            if rover.heading > Wall + 90:
-#                left_side_speed = 0
-#                right_side_speed = 0
-#                rover.send_command(left_side_speed, right_side_speed)
-        
-
 
 if __name__ == "__main__":
     main()
