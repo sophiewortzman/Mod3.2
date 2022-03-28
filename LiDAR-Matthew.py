@@ -70,8 +70,9 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
                 left_side_speed = 2
                 right_side_speed = 2
                 rover.send_command(left_side_speed, right_side_speed)
-                sleep(0.05)    
                 break
+            sleep(0.05)    
+            break
         
             
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
