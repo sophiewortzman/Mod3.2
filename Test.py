@@ -134,6 +134,12 @@ def main():
 #                right_side_speed = 0
 #                rover.send_command(left_side_speed, right_side_speed)
     sleep(0.05)
+    
+    
+  while ((objectivex - 0.5) < self.x < (objectivex + 0.5)):
+    while ((objectivey - 0.5) < self.y < (objectivey + 0.5)):
+    left_side_speed = 0
+    right_side_speed = 0
 
 
 if __name__ == "__main__":
