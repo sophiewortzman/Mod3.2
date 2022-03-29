@@ -1,1 +1,15 @@
 #Scott's code for creating a loop that runs the algorithm until the destination is reached
+
+from qset_lib import Rover
+from time import sleep
+import rospy
+import math
+rover = Rover()
+
+
+while ((objectivex - 0.5) < self.x < (objectivex + 0.5)):
+  while ((objectivey - 0.5) < self.y < (objectivey + 0.5)):
+  left_side_speed = 0
+  right_side_speed = 0
+  
+   
