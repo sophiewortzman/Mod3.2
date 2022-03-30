@@ -136,8 +136,8 @@ def main():
     sleep(0.05)
     
     
-  while ((objectivex - 0.5) < self.x < (objectivex + 0.5)):
-    while ((objectivey - 0.5) < self.y < (objectivey + 0.5)):
+  while ((objectivex - 0.25) < self.x < (objectivex + 0.25)):
+    while ((objectivey - 0.25) < self.y < (objectivey + 0.25)):
     left_side_speed = 0
     right_side_speed = 0
 
