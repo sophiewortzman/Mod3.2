@@ -54,17 +54,12 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
    
         while(1):
             
+            
+            
             tempHeading = find_heading(rover, objectivex, objectivey)
             
           
-            left_side_speed = 1
-            right_side_speed = -1
-            rover.send_command(left_side_speed, right_side_speed)
-                
             
-           
-                
-      # Here is where you would place the desired heading variable.
             if (tempHeading-1<=rover.heading<=tempHeading+1):
                 #if rover.heading == range(lowerBound, upperBound):
                 left_side_speed = 2
@@ -73,6 +68,18 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
                 break
             sleep(0.05)    
             break
+            
+            
+            
+            left_side_speed = 1
+            right_side_speed = -1
+            rover.send_command(left_side_speed, right_side_speed)
+                
+            
+           
+                
+      # Here is where you would place the desired heading variable.
+            
         
             
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
