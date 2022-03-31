@@ -8,10 +8,8 @@ sum1 = 0
 sum2 = 0
 objectivex = 10
 objectivey = 10
-left_side_speed = 0
-right_side_speed = 0
 
-def turn_left(rover, left_side_speed, right_side_speed):
+def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
     while(1):
         left_side_speed = -1
@@ -26,7 +24,7 @@ def turn_left(rover, left_side_speed, right_side_speed):
         break
         sleep(0.3)
         
-def turn_right(rover, left_side_speed, right_side_speed):
+def turn_right(rover, left_speed, right_speed):
   temp = rover.heading
   while(1):
       left_side_speed = 1
@@ -53,25 +51,24 @@ def find_heading(rover, objectivex, objectivey):
         #return math.atan(m) * 180 / math.pi 
 
 def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
-    tempHeading = find_heading(rover, objectivex, objectivey)
-            
-    while(1):
+   
             
             
+            
+            tempHeading = find_heading(rover, objectivex, objectivey)
             
           
             
-           
+            if (tempHeading-2<=rover.heading<=tempHeading+2):
+                #if rover.heading == range(lowerBound, upperBound):
+                left_side_speed = 2
+                right_side_speed = 2
+                rover.send_command(left_side_speed, right_side_speed)
             
-            
-            left_side_speed = 1
-            right_side_speed = -1
-            rover.send_command(left_side_speed, right_side_speed)
-            if (tempHeading-2>=rover.heading) or (rover.heading>=tempHeading+2):    
-                break
-                
-                
-            sleep(0.05)
+            if (tempHeading-2>=rover.heading) or (rover.heading>=tempHeading+2):
+                left_side_speed = 1
+                right_side_speed = -1
+                rover.send_command(left_side_speed, right_side_speed)
                
                 
              
@@ -144,7 +141,9 @@ def main():
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
         
-        
+        left_side_speed = 2 
+        right_side_speed = 2
+        rover.send_command(left_side_speed, right_side_speed)
         
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
@@ -169,9 +168,6 @@ def main():
             if dist > 5:
                 
                 reset_heading(rover, left_side_speed, right_side_speed, find_heading)
-                left_side_speed = 2
-                right_side_speed = 2
-                rover.send_command(left_side_speed, right_side_speed)
                 
            
             while ((objectivex - 0.5) < rover.x < (objectivex + 0.5)):
@@ -181,8 +177,7 @@ def main():
                     rover.send_command(left_side_speed, right_side_speed)
 
                 #tempHeading = find_heading(rover, objectivex, objectivey)
-            print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
-            print("Actual Heading: " + str(rover.heading))
+                #print(find_heading(rover, objectivex, objectivey))
                 
                 
                 #if (tempHeading - 1 <= rover.heading <= tempHeading + 1):
@@ -193,10 +188,13 @@ def main():
                 #if (tempHeading - 1 >= rover.heading) or (rover.heading >= tempHeading + 1):
                     #reset_heading(rover, left_side_speed, right_side_speed, find_heading)
                                     
-                #break
+                #break print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
+
+            print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
+            print("Actual Heading: " + str(rover.heading))
+                   
                 
         sleep(0.05)
 
 if __name__ == "__main__":
     main()
-
