@@ -7,7 +7,7 @@ rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
 objectivex = 5 #x is the red in gazebo
-objectivey = 10 #y is green in gazebo
+objectivey = -10 #y is green in gazebo
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
@@ -49,7 +49,7 @@ def find_heading(rover, objectivex, objectivey):
     print("The x value is: " + str(rover.x))
     print("The y value is: " + str(rover.y))
     print("The slope: " + str(m))
-    return (math.atan(m) * 180 / math.pi * (-1))
+    return (math.atan(m) * 180 / math.pi)
     #else:
         #return math.atan(m) * 180 / math.pi 
 
