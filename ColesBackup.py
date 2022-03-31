@@ -52,24 +52,25 @@ def find_heading(rover, objectivex, objectivey):
 
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
 
+    while(1)
     
-    
-    if (tempHeading+1>rover.heading>tempHeading-1):
-        #if rover.heading == range(lowerBound, upperBound):
-        left_side_speed = 4
-        right_side_speed = 4
-        rover.send_command(left_side_speed, right_side_speed)
+        if (tempHeading+1>rover.heading>tempHeading-1):
+            #if rover.heading == range(lowerBound, upperBound):
+            left_side_speed = 4
+            right_side_speed = 4
+            rover.send_command(left_side_speed, right_side_speed)
+            break
             
-    if (tempHeading-1>rover.heading>-179.99):
-        left_side_speed = -1
-        right_side_speed = 1
-        rover.send_command(left_side_speed, right_side_speed)
+        if (tempHeading-1>rover.heading>-179.99):
+            left_side_speed = -1
+            right_side_speed = 1
+            rover.send_command(left_side_speed, right_side_speed)
                
-    if (tempHeading+1<rover.heading<179.99):
-        left_side_speed = 1
-        right_side_speed = -1
-        rover.send_command(left_side_speed, right_side_speed)
-             
+        if (tempHeading+1<rover.heading<179.99):
+            left_side_speed = 1
+            right_side_speed = -1
+            rover.send_command(left_side_speed, right_side_speed)
+            
             
     
            
