@@ -41,18 +41,50 @@ def turn_right(rover, left_speed, right_speed):
 #call this to find the new heading angle after the rover turns (returns heading angle)
 def find_heading(rover, objectivex, objectivey):
 
-    #find the slope between the two points relative top the x-axis (0 degrees)
-    m = (objectivey-rover.y)/(objectivex-rover.x)
+    m = (objectivey-rover.y)/(objectivex-rover.x) #find the slope between the two points relative top the x-axis (0 degrees)
     
-    #take the arctan of the slope to find the heading angle
-    #if rover.y < objectivey:
+    if(objectivey > 0) and (objectivex > 0): #Quadrant 1
+        if (rover.y < objectivey) and (rover.x < objectivex): #1
+            return (math.atan(m) * 180 / math.pi)
+        if(rover.y > objectivey) and (rover.x > objectivex): #2
+            return ((math.atan(m) * 180 / math.pi) - 180)
+        if(rover.y > objectivey) and (rover.x < objectivex): #3
+            return (math.atan(m) * 180 / math.pi)
+        if(rover.y < objectivey) and (rover.x > objectivex): #4
+            return ((math.atan(m) * 180 / math.pi) - 180)
     
-    #print("The x value is: " + str(rover.x))
-    #print("The y value is: " + str(rover.y))
-    #print("The slope: " + str(m))
-    return (math.atan(m) * 180 / math.pi)
-    #else:
-        #return math.atan(m) * 180 / math.pi 
+    if(objectivey > 0) and (objectivex < 0): #Quadrant 2
+        if(rover.y < objectivey) and (rover.x > objectivex): #1
+            return ((math.atan(m) * 180 / math.pi) + 180)
+        if(rover.y > objectivey) and (rover.x < objectivex): #2
+            return (math.atan(m) * 180 / math.pi)
+        if(rover.y > objectivey) and (rover.x > objectivex): #3
+            return ((math.atan(m) * 180 / math.pi) - 180)
+        if(rover.y < objectivey) and (rover.x < objectivex): #4
+            return (math.atan(m) * 180 / math.pi)
+        
+    if(objectivey < 0) and (objectivex > 0): #Quadrant 3
+        if(rover.y > objectivey) and (rover.x > objectivex): #1
+            return ((math.atan(m) * 180 / math.pi) - 180)
+        if(rover.y < objectivey) and (rover.x < objectivex): #2
+            return (math.atan(m) * 180 / math.pi)
+        if(rover.y > objectivey) and (rover.x < objectivex): #3
+            return (math.atan(m) * 180 / math.pi)
+        if(rover.y < objectivey) and (rover.x > objectivex): #4
+            return ((math.atan(m) * 180 / math.pi) + 180)
+    
+    if(objectivey < 0) and (objectivex > 0): #Quadrant 4
+        if(rover.y > objectivey) and (rover.x < objectivex): #1
+            return (math.atan(m) * 180 / math.pi)
+        if(rover.y < objectivey) and (rover.x > objectivex): #2
+            return ((math.atan(m) * 180 / math.pi) + 180)
+        if(rover.y < objectivey) and (rover.x < objectivex): #3
+            return (math.atan(m) * 180 / math.pi)
+        if(rover.y > objectivey) and (rover.x > objectivex): #4
+            return ((math.atan(m) * 180 / math.pi) + 180)
+
+    else:
+        return
 
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
 
