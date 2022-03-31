@@ -72,10 +72,10 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
                
-            #if (tempHeading+90<=rover.heading<=tempHeading+2):
-                #left_side_speed = -1
-                #right_side_speed = 1
-                #rover.send_command(left_side_speed, right_side_speed)
+            if (tempHeading-2>=rover.heading):
+                left_side_speed = -1
+                right_side_speed = 1
+                rover.send_command(left_side_speed, right_side_speed)
              
             
             
