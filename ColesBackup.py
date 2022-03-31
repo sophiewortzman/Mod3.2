@@ -175,7 +175,7 @@ def main():
                 
                 
            
-            if (objectivex - 0.1) < rover.x < (objectivex + 0.1) and (objectivey - 0.1) < rover.y < (objectivey + 0.1):
+            if (objectivex - 0.1 <= rover.x <= objectivex + 0.1) and (objectivey - 0.1 <= rover.y <= objectivey + 0.1):
                 print("Destination Reached, Terminating Program...")
                 left_side_speed = 0
                 right_side_speed = 0
