@@ -67,11 +67,13 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
                 left_side_speed = 1
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
+                sleep(0.5)
                
             elif (tempHeading > rover.heading):
                 left_side_speed = -1
                 right_side_speed = 1
                 rover.send_command(left_side_speed, right_side_speed)
+                sleep(0.5)
              
             elif (tempHeading==rover.heading):
                 #if rover.heading == range(lowerBound, upperBound):
@@ -175,7 +177,7 @@ def main():
             tempHeading = find_heading(rover, objectivex, objectivey)
 
             if dist > 5:
-                while (rover.heading > tempHeading+0.1) and (rover.heading < tempHeading-0.1):
+                if (rover.heading > tempHeading+0.1) and (rover.heading < tempHeading-0.1):
                     reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
                 
            
