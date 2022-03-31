@@ -188,7 +188,11 @@ def main():
                 #if (tempHeading - 1 >= rover.heading) or (rover.heading >= tempHeading + 1):
                     #reset_heading(rover, left_side_speed, right_side_speed, find_heading)
                                     
-                #break
+                #break print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
+
+            print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
+            print("Actual Heading: " + str(rover.heading))
+                   
                 
         sleep(0.05)
 
