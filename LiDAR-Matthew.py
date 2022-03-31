@@ -8,6 +8,8 @@ sum1 = 0
 sum2 = 0
 objectivex = 10
 objectivey = 10
+left_side_speed = 0
+right_side_speed = 0
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
