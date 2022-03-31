@@ -6,8 +6,6 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
-
-
 objectivex = 5 #x is the red in gazebo
 objectivey = 10 #y is green in gazebo
 
@@ -54,12 +52,7 @@ def find_heading(rover, objectivex, objectivey):
 
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
    
-            
-            
-            
-            
-            
-          
+         
             
             if (tempHeading-1<=rover.heading<=tempHeading+1):
                 #if rover.heading == range(lowerBound, upperBound):
