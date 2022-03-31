@@ -63,6 +63,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
             right_side_speed = 2
             rover.send_command(left_side_speed, right_side_speed)
             sleep(1)
+            return
             
             
         if (tempHeading>rover.heading>-179.99):
@@ -138,13 +139,15 @@ def main():
   
     while not rospy.is_shutdown():
         
-        if (rover.x == objectivex) and (rover.y == objectivey):
-            left_side_speed = 0 
-            right_side_speed = 0
-            rover.send_command(left_side_speed, right_side_speed)
+        if (objectivex - 0.1 <= rover.x <= objectivex + 0.1) and (objectivey - 0.1 <= rover.y <= objectivey + 0.1):
+                print("Destination Reached, Terminating Program...")
+                left_side_speed = 0
+                right_side_speed = 0
+                rover.send_command(left_side_speed, right_side_speed)
+                rospy.is_shutdown() = True
         
-        left_side_speed = 2 
-        right_side_speed = 2
+        left_side_speed = 3
+        right_side_speed = 3
         rover.send_command(left_side_speed, right_side_speed)
         
         
