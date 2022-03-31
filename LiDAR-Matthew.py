@@ -52,7 +52,6 @@ def find_heading(rover, objectivex, objectivey):
 
 def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
    
-        while(1):
             
             
             
@@ -77,7 +76,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
             
             
 
-            break
+           
                 
             
            
