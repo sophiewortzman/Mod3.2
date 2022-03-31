@@ -118,23 +118,23 @@ def side_to_favour():
         if count <= 15:
             if rover.laser_distances[count] != float('inf'):
                 sumRight += rover.laser_distances[count]
-                print("value:", rover.laser_distances[count])
+                #print("value:", rover.laser_distances[count])
             else:
-                print("ADDING 200")
+                #print("ADDING 200")
                 sumRight += 200
         
         if count >= 15:
             if rover.laser_distances[count] != float('inf'):
                 sumLeft += rover.laser_distances[count]
-                print("value:", rover.laser_distances[count])
+                #print("value:", rover.laser_distances[count])
             else:
-                print("Adding 200")
+                #print("Adding 200")
                 sumLeft += 200
 
         count += 1
         print(count)
-    print("sumLeft:", sumLeft)
-    print("sumRight:", sumRight)
+    #print("sumLeft:", sumLeft)
+    #print("sumRight:", sumRight)
 
     if sumLeft > sumRight:
         return "left"
