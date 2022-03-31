@@ -59,11 +59,14 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
             
             
             
-          
-            
-
-            
-            if (tempHeading < rover.heading):
+            if (tempHeading==rover.heading):
+                #if rover.heading == range(lowerBound, upperBound):
+                left_side_speed = 2
+                right_side_speed = 2
+                rover.send_command(left_side_speed, right_side_speed)
+                return
+             
+            elif (tempHeading < rover.heading):
                 left_side_speed = 1
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
@@ -75,12 +78,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
                 rover.send_command(left_side_speed, right_side_speed)
                 sleep(0.5)
              
-            elif (tempHeading==rover.heading):
-                #if rover.heading == range(lowerBound, upperBound):
-                left_side_speed = 2
-                right_side_speed = 2
-                rover.send_command(left_side_speed, right_side_speed)
-                return  
+  
             
             
 
