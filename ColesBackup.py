@@ -168,11 +168,13 @@ def main():
                 
                 
            
-            #while ((objectivex - 0.5) < rover.x < (objectivex + 0.5)):
-                #while ((objectivey - 0.5) < rover.y < (objectivey + 0.5)):
-                    #left_side_speed = 0
-                    #right_side_speed = 0
-                    #rover.send_command(left_side_speed, right_side_speed)
+            if (objectivex - 0.1) < rover.x < (objectivex + 0.1) and (objectivey - 0.1) < rover.y < (objectivey + 0.5):
+                print("Final Destination Reached, Terminating Program...")
+                left_side_speed = 0
+                right_side_speed = 0
+                rover.send_command(left_side_speed, right_side_speed)
+                break
+                    
 
                     
                     
