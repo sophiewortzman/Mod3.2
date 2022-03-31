@@ -175,7 +175,7 @@ def main():
             tempHeading = find_heading(rover, objectivex, objectivey)
 
             if dist > 5:
-                if (rover.heading > tempHeading+0.1) and (rover.heading < tempHeading-0.1):
+                if (rover.heading > abs(tempHeading+0.1)) and (rover.heading < abs(tempHeading-0.1)):
                     reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
                 
            
