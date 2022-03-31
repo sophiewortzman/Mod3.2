@@ -64,12 +64,14 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
                     left_side_speed = 2
                     right_side_speed = 2
                     rover.send_command(left_side_speed, right_side_speed)
+                    print("DRIVING")
                     break
             
                 else:
                     left_side_speed = 1
                     right_side_speed = -1
                     rover.send_command(left_side_speed, right_side_speed)
+                    print("TURNING")
                 
                 sleep(0.5)
                
@@ -144,9 +146,6 @@ def main():
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
         
-        left_side_speed = 2 
-        right_side_speed = 2
-        rover.send_command(left_side_speed, right_side_speed)
         
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
