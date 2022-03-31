@@ -140,12 +140,7 @@ def main():
   
     while not rospy.is_shutdown():
         
-        if (objectivex - 0.1 <= rover.x <= objectivex + 0.1) and (objectivey - 0.1 <= rover.y <= objectivey + 0.1):
-                print("Destination Reached, Terminating Program...")
-                left_side_speed = 0
-                right_side_speed = 0
-                rover.send_command(left_side_speed, right_side_speed)
-                rospy.is_shutdown()
+        
         
         left_side_speed = 3
         right_side_speed = 3
@@ -157,7 +152,12 @@ def main():
 
         for dist in rover.laser_distances:
             
-            
+            if (objectivex - 0.1 <= rover.x <= objectivex + 0.1) and (objectivey - 0.1 <= rover.y <= objectivey + 0.1):
+                print("Destination Reached, Terminating Program...")
+                left_side_speed = 0
+                right_side_speed = 0
+                rover.send_command(left_side_speed, right_side_speed)
+                rospy.is_shutdown()
      
             if dist < 2:
                 
