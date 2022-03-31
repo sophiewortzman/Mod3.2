@@ -46,9 +46,10 @@ def find_heading(rover, objectivex, objectivey):
     
     #take the arctan of the slope to find the heading angle
     #if rover.y < objectivey:
-    print("The x value is: " + str(rover.x))
-    print("The y value is: " + str(rover.y))
-    print("The slope: " + str(m))
+    
+    #print("The x value is: " + str(rover.x))
+    #print("The y value is: " + str(rover.y))
+    #print("The slope: " + str(m))
     return (math.atan(m) * 180 / math.pi)
     #else:
         #return math.atan(m) * 180 / math.pi 
@@ -59,10 +60,11 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
     
         if (tempHeading+1>rover.heading>tempHeading-1):
             #if rover.heading == range(lowerBound, upperBound):
-            left_side_speed = 2
-            right_side_speed = 2
+            left_side_speed = 4
+            right_side_speed = 4
             rover.send_command(left_side_speed, right_side_speed)
-            sleep(1)
+            sleep(0.1)
+            return
             
             
         if (tempHeading>rover.heading>-179.99):
@@ -138,13 +140,15 @@ def main():
   
     while not rospy.is_shutdown():
         
-        if (rover.x == objectivex) and (rover.y == objectivey):
-            left_side_speed = 0 
-            right_side_speed = 0
-            rover.send_command(left_side_speed, right_side_speed)
+        if (objectivex - 0.4 <= rover.x <= objectivex + 0.4) and (objectivey - 0.4 <= rover.y <= objectivey + 0.4):
+                print("Destination Reached, Terminating Program...")
+                left_side_speed = 0
+                right_side_speed = 0
+                rover.send_command(left_side_speed, right_side_speed)
+                return 0
         
-        left_side_speed = 2 
-        right_side_speed = 2
+        left_side_speed = 3
+        right_side_speed = 3
         rover.send_command(left_side_speed, right_side_speed)
         
         
@@ -152,7 +156,9 @@ def main():
         print (rover.laser_distances)
 
         for dist in rover.laser_distances:
-                      
+            
+            
+     
             if dist < 2:
                 
                 whichWay = side_to_favour()
@@ -172,15 +178,6 @@ def main():
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
                 #sleep(0.1)
                 
-                
-                
-           
-            if (objectivex - 0.1) < rover.x < (objectivex + 0.1) and (objectivey - 0.1) < rover.y < (objectivey + 0.1):
-                print("Destination Reached, Terminating Program...")
-                left_side_speed = 0
-                right_side_speed = 0
-                rover.send_command(left_side_speed, right_side_speed)
-                rospy.is_shutdown()
                     
 
                     
@@ -201,8 +198,8 @@ def main():
                                     
                 #break print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
 
-            print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
-            print("Actual Heading: " + str(rover.heading))
+            #print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
+            #print("Actual Heading: " + str(rover.heading))
                    
                 
         sleep(0.05)
