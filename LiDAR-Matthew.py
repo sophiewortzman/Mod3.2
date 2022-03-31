@@ -165,6 +165,13 @@ def main():
             if dist > 5:
                 
                 reset_heading(rover, left_side_speed, right_side_speed, find_heading)
+                
+           
+            while ((objectivex - 0.5) < self.x < (objectivex + 0.5)):
+                while ((objectivey - 0.5) < self.y < (objectivey + 0.5)):
+                    left_side_speed = 0
+                    right_side_speed = 0
+                    rover.send_command(left_side_speed, right_side_speed)
 
                 #tempHeading = find_heading(rover, objectivex, objectivey)
                 #print(find_heading(rover, objectivex, objectivey))
