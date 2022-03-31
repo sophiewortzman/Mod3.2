@@ -159,12 +159,12 @@ def main():
 
                 if whichWay == "right":
                     print(whichWay)
-                    turn_right(rover, left_side_speed, right_side_speed)
+                    turn_right(rover, left_speed, right_speed)
                        
                         
                 if whichWay == "left":
                     print(whichWay)
-                    turn_left(rover, left_side_speed, right_side_speed)
+                    turn_left(rover, left_speed, right_speed)
 
             if dist > 5:
                 
