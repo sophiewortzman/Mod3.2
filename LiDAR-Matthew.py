@@ -142,9 +142,7 @@ def main():
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
         
-        left_side_speed = 2 
-        right_side_speed = 2
-        rover.send_command(left_side_speed, right_side_speed)
+        
         
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
