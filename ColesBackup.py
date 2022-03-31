@@ -198,8 +198,8 @@ def main():
                                     
                 #break print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
 
-            print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
-            print("Actual Heading: " + str(rover.heading))
+            #print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
+            #print("Actual Heading: " + str(rover.heading))
                    
                 
         sleep(0.05)
