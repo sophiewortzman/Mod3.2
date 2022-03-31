@@ -66,7 +66,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
                 left_side_speed = 2
                 right_side_speed = 2
                 rover.send_command(left_side_speed, right_side_speed)
-                sleep(1)
+                retrun
             
             elif (tempHeading < rover.heading):
                 left_side_speed = 1
