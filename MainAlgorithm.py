@@ -132,7 +132,7 @@ def side_to_favour():
                 sumLeft += 200
 
         count += 1
-        print(count)
+        #print(count)
     #print("sumLeft:", sumLeft)
     #print("sumRight:", sumRight)
 
