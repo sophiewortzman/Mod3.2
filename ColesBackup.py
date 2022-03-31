@@ -46,7 +46,7 @@ def find_heading(rover, objectivex, objectivey):
 
     #take the arctan of the slope to find the heading angle
     #if rover.y < objectivey:
-    return (math.atan(m) * 180 / math.pi) * (-1)
+    return (math.atan(m) * 180 / math.pi)
     #else:
         #return math.atan(m) * 180 / math.pi 
 
