@@ -160,7 +160,7 @@ def main():
 
                 if whichWay == "right":
                     print(whichWay)
-                    turn_right(rover, left_side_speed, right_side_speed)
+                    turn_right(rover, left_speed, right_speed)
                        
                         
                 if whichWay == "left":
@@ -196,4 +196,4 @@ def main():
         sleep(0.05)
 
 if __name__ == "__main__":
-    main()
+    main():
