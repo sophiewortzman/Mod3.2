@@ -179,7 +179,7 @@ def main():
                     rover.send_command(left_side_speed, right_side_speed)
 
                 #tempHeading = find_heading(rover, objectivex, objectivey)
-            print("Temp Heading: " + find_heading(rover, objectivex, objectivey))
+            print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
             print("Actual Heading: " + str(rover.heading))
                 
                 
