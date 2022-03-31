@@ -15,10 +15,10 @@ def turn_left(rover, left_speed, right_speed):
         left_side_speed = -1
         right_side_speed = 1
         rover.send_command(left_side_speed, right_side_speed)
-       
+        sleep(0.3)
         #print("Speed: " + left_side_speed)
         break
-        sleep(0.3)
+        
         
 def turn_right(rover, left_speed, right_speed):
     
@@ -26,10 +26,10 @@ def turn_right(rover, left_speed, right_speed):
         left_side_speed = 1
         right_side_speed = -1
         rover.send_command(left_side_speed, right_side_speed)
-        
+        sleep(0.3)
         #print("Speed: " + right_side_speed)
         break
-        sleep(0.3)
+        
 
 #call this to find the new heading angle after the rover turns (returns heading angle)
 def find_heading(rover, objectivex, objectivey):
