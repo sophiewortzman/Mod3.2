@@ -1,3 +1,7 @@
+#This is a mostly functional algorithm
+
+#IMPORTANT - please make copy before editing code
+
 from qset_lib import Rover
 from time import sleep
 import rospy
