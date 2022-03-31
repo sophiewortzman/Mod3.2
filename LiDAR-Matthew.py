@@ -51,9 +51,9 @@ def find_heading(rover, objectivex, objectivey):
         #return math.atan(m) * 180 / math.pi 
 
 def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
-   
+    
             
-    while((tempHeading-2>=rover.heading) or (rover.heading>=tempHeading+2)):
+    while(1):
             
             tempHeading = find_heading(rover, objectivex, objectivey)
             
@@ -65,6 +65,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
                 left_side_speed = 1
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
+                break
                 
                 
             sleep(0.05)
