@@ -63,7 +63,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
             left_side_speed = 4
             right_side_speed = 4
             rover.send_command(left_side_speed, right_side_speed)
-            sleep(1)
+            sleep(0.1)
             return
             
             
