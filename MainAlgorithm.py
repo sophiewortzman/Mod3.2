@@ -238,14 +238,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-        i = i + 1
-        sleep(0.01)
-
-        #run dijkstra's algorithm
-        #import Dijkstra
-         
-         #turn left
-         
-
-if __name__ == "__main__":
-    main()
