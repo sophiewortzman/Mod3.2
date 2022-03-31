@@ -7,7 +7,7 @@ rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
 objectivex = 5 #x is the red in gazebo
-objectivey = -10 #y is green in gazebo
+objectivey = 10 #y is green in gazebo
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
