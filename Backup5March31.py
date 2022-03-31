@@ -6,7 +6,7 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
-objectivex = 10
+objectivex = 5
 objectivey = 10
 
 def turn_left(rover, left_speed, right_speed):
