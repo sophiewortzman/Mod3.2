@@ -171,10 +171,12 @@ def main():
                 if whichWay == "left":
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
+                    
+            tempHeading = find_heading(rover, objectivex, objectivey)
 
             if dist > 5:
-                tempHeading = find_heading(rover, objectivex, objectivey)
-                reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
+                if (rover.heading < tempHeading+0.1) and (rover.heading > tempHeading-0.1):
+                    reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
                 
            
             while ((objectivex - 0.5) < rover.x < (objectivex + 0.5)):
