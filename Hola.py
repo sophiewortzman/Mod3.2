@@ -194,3 +194,7 @@ def main():
                 #break
                 
         sleep(0.05)
+        
+        
+ if __name__ == "__main__":
+    main()
