@@ -177,7 +177,7 @@ def main():
                     rover.send_command(left_side_speed, right_side_speed)
 
                 #tempHeading = find_heading(rover, objectivex, objectivey)
-                #print(find_heading(rover, objectivex, objectivey))
+            print(find_heading(rover, objectivex, objectivey))
                 
                 
                 #if (tempHeading - 1 <= rover.heading <= tempHeading + 1):
