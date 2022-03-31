@@ -52,12 +52,12 @@ def find_heading(rover, objectivex, objectivey):
     #else:
         #return math.atan(m) * 180 / math.pi 
 
-def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
+def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
    
             
             
             
-            tempHeading = find_heading(rover, objectivex, objectivey)
+            
             
           
             
@@ -72,7 +72,10 @@ def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
                
-                
+            if (tempHeading-2<=rover.heading) or (rover.heading<=tempHeading+2):
+                left_side_speed = -1
+                right_side_speed = 1
+                rover.send_command(left_side_speed, right_side_speed)
              
             
             
@@ -169,8 +172,8 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
 
             if dist > 5:
-                
-                reset_heading(rover, left_side_speed, right_side_speed, find_heading)
+                tempHeading = find_heading(rover, objectivex, objectivey)
+                reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
                 
            
             while ((objectivex - 0.5) < rover.x < (objectivex + 0.5)):
