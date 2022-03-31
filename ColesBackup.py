@@ -202,7 +202,7 @@ def main():
             #print("Actual Heading: " + str(rover.heading))
                    
                 
-        sleep(0.05)
+        sleep(0.01)
 
 if __name__ == "__main__":
     main()
