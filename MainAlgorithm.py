@@ -10,33 +10,26 @@ objectivex = 15 #x is the red in gazebo
 objectivey = 1 #y is green in gazebo
 
 def turn_left(rover, left_speed, right_speed):
-    temp = rover.heading
+    
     while(1):
         left_side_speed = -1
         right_side_speed = 1
         rover.send_command(left_side_speed, right_side_speed)
-        # Here is where you would place the desired heading variable.
-        if rover.heading > temp + 90:
-            left_side_speed = 0
-            right_side_speed = 0
-            rover.send_command(left_side_speed, right_side_speed)
+       
         #print("Speed: " + left_side_speed)
         break
         sleep(0.3)
         
 def turn_right(rover, left_speed, right_speed):
-  temp = rover.heading
-  while(1):
-      left_side_speed = 1
-      right_side_speed = -1
-      rover.send_command(left_side_speed, right_side_speed)
-      # Here is where you would place the desired heading variable.
-      if rover.heading < temp - 90:
-          left_side_speed = 0
-          right_side_speed = 0
-          rover.send_command(left_side_speed, right_side_speed)
-      break
-  sleep(0.3)
+    
+    while(1):
+        left_side_speed = 1
+        right_side_speed = -1
+        rover.send_command(left_side_speed, right_side_speed)
+        
+        #print("Speed: " + right_side_speed)
+        break
+        sleep(0.3)
 
 #call this to find the new heading angle after the rover turns (returns heading angle)
 def find_heading(rover, objectivex, objectivey):
