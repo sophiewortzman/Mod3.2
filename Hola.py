@@ -52,23 +52,26 @@ def find_heading(rover, objectivex, objectivey):
 
 def reset_heading(rover, left_side_speed, right_side_speed, find_heading):
    
-            
+            while(1)
             
             
             tempHeading = find_heading(rover, objectivex, objectivey)
             
           
             
-            if (tempHeading-2<=rover.heading<=tempHeading+2):
+            if (tempHeading == rover.heading):
                 #if rover.heading == range(lowerBound, upperBound):
                 left_side_speed = 2
                 right_side_speed = 2
                 rover.send_command(left_side_speed, right_side_speed)
+                break
             
-            if (tempHeading-2>=rover.heading) or (rover.heading>=tempHeading+2):
+            else:
                 left_side_speed = 1
                 right_side_speed = -1
                 rover.send_command(left_side_speed, right_side_speed)
+                
+            sleep(0.5)
                
                 
              
@@ -165,9 +168,10 @@ def main():
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
 
-            if dist > 5:
+            if dist >= 5:
                 
                 reset_heading(rover, left_side_speed, right_side_speed, find_heading)
+                sleep(1)
                 
            
             while ((objectivex - 0.5) < rover.x < (objectivex + 0.5)):
