@@ -183,7 +183,7 @@ def main():
                 left_side_speed = 0
                 right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
-                rospy.is_shutdown() = True
+                rospy.is_shutdown()
                     
 
                     
