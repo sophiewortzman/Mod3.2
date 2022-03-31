@@ -6,8 +6,8 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
-objectivex = -5 #x is the red in gazebo
-objectivey = 10 #y is green in gazebo
+objectivex = 15 #x is the red in gazebo
+objectivey = 1 #y is green in gazebo
 
 def turn_left(rover, left_speed, right_speed):
     temp = rover.heading
@@ -88,8 +88,6 @@ def find_heading(rover, objectivex, objectivey):
 
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
 
-    
-    
         if (tempHeading+1>rover.heading>tempHeading-1):
             #if rover.heading == range(lowerBound, upperBound):
             left_side_speed = 4
@@ -97,8 +95,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
             rover.send_command(left_side_speed, right_side_speed)
             sleep(0.1)
             return
-            
-            
+
         if (tempHeading>rover.heading>-179.99):
             left_side_speed = -1
             right_side_speed = 1
@@ -110,53 +107,38 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
             right_side_speed = -1
             rover.send_command(left_side_speed, right_side_speed)
             sleep(0.1)
-       
-       
-            
-    
-           
-                
-      # Here is where you would place the desired heading variable.
-            
-        
             
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
 def side_to_favour():
-    
     sumRight = 0
     sumLeft = 0
     count = 0
 
     while(count <= 29):
-
         if count <= 15:
             if rover.laser_distances[count] != float('inf'):
                 sumRight += rover.laser_distances[count]
-                print("value:", rover.laser_distances[count])
-
+                #print("value:", rover.laser_distances[count])
             else:
-                print("ADDING 200")
+                #print("ADDING 200")
                 sumRight += 200
         
         if count >= 15:
-
             if rover.laser_distances[count] != float('inf'):
                 sumLeft += rover.laser_distances[count]
-                print("value:", rover.laser_distances[count])
-
+                #print("value:", rover.laser_distances[count])
             else:
-                print("Adding 200")
+                #print("Adding 200")
                 sumLeft += 200
 
         count += 1
-        print(count)
-    print("sumLeft:", sumLeft)
-    print("sumRight:", sumRight)
+        #print(count)
+    #print("sumLeft:", sumLeft)
+    #print("sumRight:", sumRight)
 
     if sumLeft > sumRight:
         return "left"
             
-
     if sumRight > sumLeft:
         return "right"
 
@@ -167,9 +149,6 @@ def side_to_favour():
         return "NOT WORKING"       
 
 def main():  
-    
-    
-  
     while not rospy.is_shutdown():
         
         if (objectivex - 0.4 <= rover.x <= objectivex + 0.4) and (objectivey - 0.4 <= rover.y <= objectivey + 0.4):
@@ -188,11 +167,8 @@ def main():
         print (rover.laser_distances)
 
         for dist in rover.laser_distances:
-            
-            
-     
+
             if dist < 2:
-                
                 whichWay = side_to_favour()
                 #print(whichWay)
 
@@ -200,7 +176,6 @@ def main():
                     print(whichWay)
                     turn_right(rover, left_side_speed, right_side_speed)
                        
-                        
                 if whichWay == "left":
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
@@ -208,32 +183,10 @@ def main():
             if dist > 5:
                 tempHeading = find_heading(rover, objectivex, objectivey)
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
-                #sleep(0.1)
-                
-                    
-
-                    
-                    
-                    
-                    
-                #tempHeading = find_heading(rover, objectivex, objectivey)
-                #print(find_heading(rover, objectivex, objectivey))
-                
-                
-                #if (tempHeading - 1 <= rover.heading <= tempHeading + 1):
-                    #left_side_speed = 2
-                    #right_side_speed = 2
-                    #rover.send_command(left_side_speed, right_side_speed)
-                
-                #if (tempHeading - 1 >= rover.heading) or (rover.heading >= tempHeading + 1):
-                    #reset_heading(rover, left_side_speed, right_side_speed, find_heading)
-                                    
-                #break print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
 
             #print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
             #print("Actual Heading: " + str(rover.heading))
-                   
-                
+
         sleep(0.05)
 
 if __name__ == "__main__":
