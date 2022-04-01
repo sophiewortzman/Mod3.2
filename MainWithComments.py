@@ -149,7 +149,7 @@ def main():
 
         for dist in rover.laser_distances:
             # If the rover is within 2 m of an obstacle, decide which way to turn and turn that way until the obstacle is no longer in the way.
-            if dist < 2:
+            if rover.laser_distances[13] < 4 or rover.laser_distances[14] < 4 or rover.laser_distances[15] < 4 or rover.laser_distances[16] < 4:
                 whichWay = side_to_favour()
                 if whichWay == "right":
                     print("Turning " + whichWay + "...\n")
