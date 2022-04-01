@@ -167,16 +167,16 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
                     sleep(0.01)
                 
-            if ((rover.laser_distances[0] > 8) and
-               (rover.laser_distances[3] > 8) and
-               (rover.laser_distances[6] > 8) and
-               (rover.laser_distances[9] > 8) and
-               (rover.laser_distances[12] > 8) and
-               (rover.laser_distances[15] > 8) and
-               (rover.laser_distances[18] > 8) and
-               (rover.laser_distances[21] > 8) and
-               (rover.laser_distances[24] > 8) and
-               (rover.laser_distances[27] > 8)):
+            if ((rover.laser_distances[0] > 6) and
+               (rover.laser_distances[3] > 6) and
+               (rover.laser_distances[6] > 6) and
+               (rover.laser_distances[9] > 6) and
+               (rover.laser_distances[12] > 6) and
+               (rover.laser_distances[15] > 6) and
+               (rover.laser_distances[18] > 6) and
+               (rover.laser_distances[21] > 6) and
+               (rover.laser_distances[24] > 6) and
+               (rover.laser_distances[27] > 6)):
                 left_side_speed = 3
                 right_side_speed = 3
                 rover.send_command(left_side_speed, right_side_speed)
