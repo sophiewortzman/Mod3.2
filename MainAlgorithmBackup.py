@@ -136,7 +136,7 @@ def side_to_favour():
 def main():  
     # Print the final destination.
     print("Destination in x: " + str(objectivex))
-    print("Destination in y: " + str(objectivey))
+    print("Destination in y: " + str(objectivey) + "\n")
     # Keep the going until the rover is shut down or the rover reaches its destination.
     while not rospy.is_shutdown():
         # If the rover is right on or super close to its destination, stop the rover and terminate the program.
@@ -148,8 +148,12 @@ def main():
                 return 0
 
         for dist in rover.laser_distances:
-            # If the rover is within 2 m of an obstacle, decide which way to turn and turn that way until the obstacle is no longer in the way.
-            if rover.laser_distances[13] < 4 or rover.laser_distances[14] < 4 or rover.laser_distances[15] < 4 or rover.laser_distances[16] < 4:
+            # If the rover is within 4 m of an obstacle in front, decide which way to turn and turn that way until the obstacle is no longer in the way.
+            if (rover.laser_distances[13] < 4 or rover.laser_distances[14] < 4 or rover.laser_distances[15] < 4 or rover.laser_distances[16] < 4
+               or rover.laser_distances[0] < 1.2 or rover.laser_distances[2] < 1.2 or rover.laser_distances[4] < 1.2 or rover.laser_distances[6] < 1.2
+               or rover.laser_distances[8] < 1.2 or rover.laser_distances[10] < 1.2 or rover.laser_distances[12] < 1.2 or rover.laser_distances[18] < 1.2
+               or rover.laser_distances[20] < 1.2 or rover.laser_distances[22] < 1.2 or rover.laser_distances[24] < 1.2 or rover.laser_distances[26] < 1.2
+               or rover.laser_distances[28] < 1.2):
                 whichWay = side_to_favour()
                 if whichWay == "right":
                     print("Turning " + whichWay + "...\n")
@@ -161,11 +165,11 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
                     print("Finished turn!\n")
                     sleep(0.05)
-            # Pick some LiDAR values and check if they all indicate the rover is 8 m from an obstacle. If the rover is, reset the heading to reach
-            # the destination.
-            if ((rover.laser_distances[3] > 8) and (rover.laser_distances[6] > 8) and (rover.laser_distances[9] > 8) and
-               (rover.laser_distances[12] > 8) and (rover.laser_distances[15] > 8) and (rover.laser_distances[18] > 8) and
-               (rover.laser_distances[21] > 8) and (rover.laser_distances[24] > 8) and (rover.laser_distances[27] > 8)):
+            # Pick some LiDAR values and check if they all indicate the rover is at least 6 m from an obstacle. 
+            # If the rover is, reset the heading to reach the destination.
+            if ((rover.laser_distances[3] > 6) and (rover.laser_distances[6] > 6) and (rover.laser_distances[9] > 6) and
+               (rover.laser_distances[12] > 6) and (rover.laser_distances[15] > 6) and (rover.laser_distances[18] > 6) and
+               (rover.laser_distances[21] > 6) and (rover.laser_distances[24] > 6) and (rover.laser_distances[27] > 6)):
                 
                 sleep(0.05)
                 tempHeading = find_heading(rover, objectivex, objectivey)
