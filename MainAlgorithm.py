@@ -142,6 +142,10 @@ def side_to_favour():
         return "NOT WORKING"       
 
 def main():  
+    
+    print("Destination in x: " + objectivex)
+    print("Destination in y: " + objectivey)
+    
     while not rospy.is_shutdown():
         
         if (objectivex - 0.8 <= rover.x <= objectivex + 0.8) and (objectivey - 0.8 <= rover.y <= objectivey + 0.8):
