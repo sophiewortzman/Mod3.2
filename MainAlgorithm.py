@@ -153,7 +153,7 @@ def main():
 
         for dist in rover.laser_distances:
             
-            if dist < 1:
+            if dist < 5:
                 whichWay = side_to_favour()
                 #print(whichWay)
 
