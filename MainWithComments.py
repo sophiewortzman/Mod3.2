@@ -165,11 +165,11 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
                     print("Finished turn!\n")
                     sleep(0.05)
-            # Pick some LiDAR values and check if they all indicate the rover is 5 m from an obstacle. If the rover is, reset the heading to reach
-            # the destination.
-            if ((rover.laser_distances[3] > 5) and (rover.laser_distances[6] > 5) and (rover.laser_distances[9] > 5) and
-               (rover.laser_distances[12] > 5) and (rover.laser_distances[15] > 5) and (rover.laser_distances[18] > 5) and
-               (rover.laser_distances[21] > 5) and (rover.laser_distances[24] > 5) and (rover.laser_distances[27] > 5)):
+            # Pick some LiDAR values and check if they all indicate the rover is at least 6 m from an obstacle. 
+            # If the rover is, reset the heading to reach the destination.
+            if ((rover.laser_distances[3] > 6) and (rover.laser_distances[6] > 6) and (rover.laser_distances[9] > 6) and
+               (rover.laser_distances[12] > 6) and (rover.laser_distances[15] > 6) and (rover.laser_distances[18] > 6) and
+               (rover.laser_distances[21] > 6) and (rover.laser_distances[24] > 6) and (rover.laser_distances[27] > 6)):
                 
                 sleep(0.05)
                 tempHeading = find_heading(rover, objectivex, objectivey)
