@@ -25,7 +25,6 @@ def turn_right(rover, left_speed, right_speed):
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.4)
         break
-        
 
 #call this to find the new heading angle after the rover turns (returns heading angle)
 def find_heading(rover, objectivex, objectivey):
@@ -75,6 +74,7 @@ def find_heading(rover, objectivex, objectivey):
     else:
         return
 
+#Function to turn the rover towards the destination
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
     
             if (tempHeading+1>rover.heading>tempHeading-1):
