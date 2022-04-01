@@ -18,7 +18,7 @@ def turn_left(rover, left_speed, right_speed):
         sleep(0.4)
         #print("Speed: " + left_side_speed)
         
-        if (dist in rover.laser_distances > 5):
+        if (for dist in rover.laser_distances > 5):
             break
         
         
@@ -31,7 +31,7 @@ def turn_right(rover, left_speed, right_speed):
         sleep(0.4)
         #print("Speed: " + right_side_speed)
         
-        if (dist in rover.laser_distances > 5):
+        if (for dist in rover.laser_distances > 5):
             break
         
 
