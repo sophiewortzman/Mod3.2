@@ -17,11 +17,7 @@ def turn_left(rover, left_speed, right_speed):
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.4)
         #print("Speed: " + left_side_speed)
-        
-        for dist in rover.laser_distances:
-            if (dist > 5):
-                sleep(1)
-                return
+        break
         
         
 def turn_right(rover, left_speed, right_speed):
@@ -32,11 +28,7 @@ def turn_right(rover, left_speed, right_speed):
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.4)
         #print("Speed: " + right_side_speed)
-        
-        for dist in rover.laser_distances:
-            if (dist > 5):
-                sleep(1)
-                return
+        break
         
 
 #call this to find the new heading angle after the rover turns (returns heading angle)
@@ -89,8 +81,6 @@ def find_heading(rover, objectivex, objectivey):
 
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
     
-    for dist in rover.laser_distances:
-        if (dist > 5):
             if (tempHeading+1>rover.heading>tempHeading-1):
                 #if rover.heading == range(lowerBound, upperBound):
                 left_side_speed = 4
@@ -162,12 +152,11 @@ def main():
         right_side_speed = 3
         rover.send_command(left_side_speed, right_side_speed)
         
-        
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         print (rover.laser_distances)
 
         for dist in rover.laser_distances:
-
+            
             if dist < 2:
                 whichWay = side_to_favour()
                 #print(whichWay)
@@ -183,6 +172,9 @@ def main():
                     sleep(0.01)
                 
             if dist > 5:
+                left_side_speed = 3
+                right_side_speed = 3
+                rover.send_command(left_side_speed, right_side_speed)
                 sleep(0.1)
                 tempHeading = find_heading(rover, objectivex, objectivey)
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
