@@ -138,7 +138,7 @@ def side_to_favour():
         return "right"
 
     if sumRight == sumLeft:
-        print("equal")
+        #print("equal")
 
     else:
         return "NOT WORKING"       
