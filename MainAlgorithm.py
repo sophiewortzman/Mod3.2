@@ -77,27 +77,27 @@ def find_heading(rover, objectivex, objectivey):
 #Function to turn the rover towards the destination
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
     
-            if (tempHeading+1>rover.heading>tempHeading-1):
-                left_side_speed = 4
-                right_side_speed = 4
-                rover.send_command(left_side_speed, right_side_speed)
-                print("Destination is straight ahead...\n")
-                sleep(0.1)
-                return
+    if (tempHeading+1>rover.heading>tempHeading-1):
+            left_side_speed = 4
+            right_side_speed = 4
+            rover.send_command(left_side_speed, right_side_speed)
+            print("Destination is straight ahead...\n")
+            sleep(0.1)
+            return
 
-            if (tempHeading>rover.heading>-179.99):
-                left_side_speed = 0
-                right_side_speed = 3
-                rover.send_command(left_side_speed, right_side_speed)
-                print("Turning left towards destination...\n")
-                sleep(0.1)
+    if (tempHeading>rover.heading>-179.99):
+            left_side_speed = 0
+            right_side_speed = 3
+            rover.send_command(left_side_speed, right_side_speed)
+            print("Turning left towards destination...\n")
+            sleep(0.1)
 
-            if (tempHeading<rover.heading<179.99):
-                left_side_speed = 3
-                right_side_speed = 0
-                rover.send_command(left_side_speed, right_side_speed)
-                print("Turning right towards destination...\n")
-                sleep(0.1)
+    if (tempHeading<rover.heading<179.99):
+            left_side_speed = 3
+            right_side_speed = 0
+            rover.send_command(left_side_speed, right_side_speed)
+            print("Turning right towards destination...\n")
+            sleep(0.1)
             
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
 def side_to_favour():
