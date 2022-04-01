@@ -143,8 +143,8 @@ def side_to_favour():
 
 def main():  
     
-    print("Destination in x: " + objectivex)
-    print("Destination in y: " + objectivey)
+#     print("Destination in x: " + objectivex)
+#     print("Destination in y: " + objectivey)
     
     while not rospy.is_shutdown():
         
