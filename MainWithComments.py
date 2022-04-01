@@ -136,7 +136,7 @@ def side_to_favour():
 def main():  
     # Print the final destination.
     print("Destination in x: " + str(objectivex))
-    print("Destination in y: " + str(objectivey))
+    print("Destination in y: " + str(objectivey) + "\n")
     # Keep the going until the rover is shut down or the rover reaches its destination.
     while not rospy.is_shutdown():
         # If the rover is right on or super close to its destination, stop the rover and terminate the program.
