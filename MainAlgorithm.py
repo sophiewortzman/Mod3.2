@@ -20,9 +20,6 @@ def turn_left(rover, left_speed, right_speed):
         
         for dist in rover.laser_distances:
             if (dist > 5):
-                left_side_speed = 4
-                right_side_speed = 4
-                rover.send_command(left_side_speed, right_side_speed)
                 sleep(1)
                 return
         
@@ -38,9 +35,6 @@ def turn_right(rover, left_speed, right_speed):
         
         for dist in rover.laser_distances:
             if (dist > 5):
-                left_side_speed = 4
-                right_side_speed = 4
-                rover.send_command(left_side_speed, right_side_speed)
                 sleep(1)
                 return
         
