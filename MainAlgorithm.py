@@ -6,8 +6,8 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
-objectivex = 15 #x is the red in gazebo
-objectivey = 1 #y is green in gazebo
+objectivex = 15 #Destination of the x-coordinate, which is the red axis in gazebo
+objectivey = 1 #Destination of the y-coordinate, which is the green axis in gazebo
 
 def turn_left(rover, left_speed, right_speed):
     while(1):
