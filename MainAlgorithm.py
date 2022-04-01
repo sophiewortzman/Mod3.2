@@ -148,8 +148,9 @@ def main():
                 rover.send_command(left_side_speed, right_side_speed)
                 return 0
         
-        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
-        print (rover.laser_distances)
+        print("Moving forward...")
+        #print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+        #print (rover.laser_distances)
 
         for dist in rover.laser_distances:
             
@@ -158,12 +159,12 @@ def main():
                 #print(whichWay)
 
                 if whichWay == "right":
-                    print(whichWay)
+                    print("Turning " + whichWay + "...")
                     turn_right(rover, left_side_speed, right_side_speed)
                     sleep(0.01)
                        
                 if whichWay == "left":
-                    print(whichWay)
+                    print("Turning " + whichWay + "...")
                     turn_left(rover, left_side_speed, right_side_speed)
                     sleep(0.01)
                 
