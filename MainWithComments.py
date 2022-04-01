@@ -7,8 +7,8 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
-objectivex = 15 #x is the red in gazebo
-objectivey = 1 #y is green in gazebo
+objectivex = 15 #Destination of the x-coordinate, which is the red axis in gazebo
+objectivey = 1 #Destination of the y-coordinate, which is the green axis in gazebo
 
 # Function to turn the rover left.
 def turn_left(rover, left_speed, right_speed):
@@ -164,16 +164,10 @@ def main():
                     sleep(0.05)
             # Pick some LiDAR values and check if they all indicate the rover is 8 m from an obstacle. If the rover is, reset the heading to reach
             # the destination.
-            if ((rover.laser_distances[0] > 8) and
-               (rover.laser_distances[3] > 8) and
-               (rover.laser_distances[6] > 8) and
-               (rover.laser_distances[9] > 8) and
-               (rover.laser_distances[12] > 8) and
-               (rover.laser_distances[15] > 8) and
-               (rover.laser_distances[18] > 8) and
-               (rover.laser_distances[21] > 8) and
-               (rover.laser_distances[24] > 8) and
-               (rover.laser_distances[27] > 8)):
+            if ((rover.laser_distances[3] > 8) and (rover.laser_distances[6] > 8) and (rover.laser_distances[9] > 8) and
+               (rover.laser_distances[12] > 8) and (rover.laser_distances[15] > 8) and (rover.laser_distances[18] > 8) and
+               (rover.laser_distances[21] > 8) and (rover.laser_distances[24] > 8) and (rover.laser_distances[27] > 8)):
+                
                 sleep(0.05)
                 tempHeading = find_heading(rover, objectivex, objectivey)
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
