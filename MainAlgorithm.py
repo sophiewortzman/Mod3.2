@@ -127,6 +127,7 @@ def side_to_favour():
 
 #The main function
 def main():  
+    
     print("Destination in x: " + str(objectivex))
     print("Destination in y: " + str(objectivey))
     
@@ -140,7 +141,7 @@ def main():
                 return 0
 
         for dist in rover.laser_distances:
-            if dist < 2:
+            if rover.laser_distances[13] < 4 or rover.laser_distances[14] < 4 or rover.laser_distances[15] < 4 or rover.laser_distances[16] < 4:
                 whichWay = side_to_favour()
                 if whichWay == "right":
                     print("Turning " + whichWay + "...\n")
