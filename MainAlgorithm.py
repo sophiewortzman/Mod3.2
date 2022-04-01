@@ -175,7 +175,7 @@ def main():
                 left_side_speed = 3
                 right_side_speed = 3
                 rover.send_command(left_side_speed, right_side_speed)
-                sleep(0.1)
+                sleep(0.05)
                 tempHeading = find_heading(rover, objectivex, objectivey)
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
 
