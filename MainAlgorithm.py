@@ -171,9 +171,9 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
                     sleep(0.01)
                 
-            if dist > 7:
-                left_side_speed = 3
-                right_side_speed = 3
+            if dist > 6:
+                left_side_speed = 5
+                right_side_speed = 5
                 rover.send_command(left_side_speed, right_side_speed)
                 sleep(0.05)
                 tempHeading = find_heading(rover, objectivex, objectivey)
