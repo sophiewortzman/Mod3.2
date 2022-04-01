@@ -153,16 +153,11 @@ def main():
                     print("Finished turn!\n")
                     sleep(0.05)
                 
-            if ((rover.laser_distances[0] > 8) and
-               (rover.laser_distances[3] > 8) and
-               (rover.laser_distances[6] > 8) and
-               (rover.laser_distances[9] > 8) and
-               (rover.laser_distances[12] > 8) and
-               (rover.laser_distances[15] > 8) and
-               (rover.laser_distances[18] > 8) and
-               (rover.laser_distances[21] > 8) and
-               (rover.laser_distances[24] > 8) and
+            if ((rover.laser_distances[0] > 8) and (rover.laser_distances[3] > 8) and (rover.laser_distances[6] > 8) and
+               (rover.laser_distances[9] > 8) and (rover.laser_distances[12] > 8) and (rover.laser_distances[15] > 8) and
+               (rover.laser_distances[18] > 8) and (rover.laser_distances[21] > 8) and (rover.laser_distances[24] > 8) and
                (rover.laser_distances[27] > 8)):
+                
                 sleep(0.05)
                 tempHeading = find_heading(rover, objectivex, objectivey)
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
