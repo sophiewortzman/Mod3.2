@@ -86,7 +86,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
                 left_side_speed = 4
                 right_side_speed = 4
                 rover.send_command(left_side_speed, right_side_speed)
-                print("Going straight to destination...")
+                print("Destination is straight ahead...")
                 sleep(0.1)
                 return
 
@@ -189,7 +189,7 @@ def main():
                 left_side_speed = 3
                 right_side_speed = 3
                 rover.send_command(left_side_speed, right_side_speed)
-                print("Moving forward...")
+                #print("Moving forward...")
                 sleep(0.01)
             #print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
             #print("Actual Heading: " + str(rover.heading))
