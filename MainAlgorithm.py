@@ -161,12 +161,12 @@ def main():
                 if whichWay == "right":
                     print("Turning " + whichWay + "...")
                     turn_right(rover, left_side_speed, right_side_speed)
-                    sleep(0.01)
+                    sleep(0.05)
                        
                 if whichWay == "left":
                     print("Turning " + whichWay + "...")
                     turn_left(rover, left_side_speed, right_side_speed)
-                    sleep(0.01)
+                    sleep(0.05)
                 
             if ((rover.laser_distances[0] > 8) and
                (rover.laser_distances[3] > 8) and
@@ -193,7 +193,7 @@ def main():
             #print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
             #print("Actual Heading: " + str(rover.heading))
 
-        sleep(0.1)
+        sleep(0.05)
 
 if __name__ == "__main__":
     main()
