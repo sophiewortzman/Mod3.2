@@ -12,8 +12,8 @@ objectivey = 1 #y is green in gazebo
 def turn_left(rover, left_speed, right_speed):
     
     while(1):
-        left_side_speed = -1
-        right_side_speed = 1
+        left_side_speed = 0
+        right_side_speed = 2
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.4)
         #print("Speed: " + left_side_speed)
@@ -23,8 +23,8 @@ def turn_left(rover, left_speed, right_speed):
 def turn_right(rover, left_speed, right_speed):
     
     while(1):
-        left_side_speed = 1
-        right_side_speed = -1
+        left_side_speed = 2
+        right_side_speed = 0
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.4)
         #print("Speed: " + right_side_speed)
@@ -90,14 +90,14 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
                 return
 
             if (tempHeading>rover.heading>-179.99):
-                left_side_speed = -1
-                right_side_speed = 1
+                left_side_speed = 0
+                right_side_speed = 2
                 rover.send_command(left_side_speed, right_side_speed)
                 sleep(0.1)
 
             if (tempHeading<rover.heading<179.99):
-                left_side_speed = 1
-                right_side_speed = -1
+                left_side_speed = 2
+                right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
                 sleep(0.1)
             
@@ -147,10 +147,6 @@ def main():
                 right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
                 return 0
-        
-        left_side_speed = 3
-        right_side_speed = 3
-        rover.send_command(left_side_speed, right_side_speed)
         
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         print (rover.laser_distances)
