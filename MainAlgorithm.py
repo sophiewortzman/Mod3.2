@@ -15,7 +15,11 @@ def turn_left(rover, left_speed, right_speed):
         left_side_speed = -1
         right_side_speed = 1
         rover.send_command(left_side_speed, right_side_speed)
-        sleep(0.3)
+        sleep(0.4)
+        left_side_speed = 3
+        right_side_speed = 3
+        rover.send_command(left_side_speed, right_side_speed)
+        sleep(0.4)
         #print("Speed: " + left_side_speed)
         break
         
@@ -26,7 +30,11 @@ def turn_right(rover, left_speed, right_speed):
         left_side_speed = 1
         right_side_speed = -1
         rover.send_command(left_side_speed, right_side_speed)
-        sleep(0.3)
+        sleep(0.4)
+        left_side_speed = 3
+        right_side_speed = 3
+        rover.send_command(left_side_speed, right_side_speed)
+        sleep(0.4)
         #print("Speed: " + right_side_speed)
         break
         
