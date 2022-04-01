@@ -20,7 +20,7 @@ def turn_left(rover, left_speed, right_speed):
         
         for dist in rover.laser_distances:
             if (dist > 5):
-                break
+                return
         
         
 def turn_right(rover, left_speed, right_speed):
@@ -34,7 +34,7 @@ def turn_right(rover, left_speed, right_speed):
         
         for dist in rover.laser_distances:
             if (dist > 5):
-                break
+                return
         
 
 #call this to find the new heading angle after the rover turns (returns heading angle)
