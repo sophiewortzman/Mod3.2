@@ -107,12 +107,12 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
         print("Turning right towards destination...\n")
         sleep(0.1)
             
-# Function to decide which side to turn when the rover to decide.
+# Function to determine the favorable side to turn (Left or Right).
 def side_to_favour():
     sumRight = 0
     sumLeft = 0
     count = 0
-
+#sum both the left (0-15) and right (15-29) laser distances, set any values of 'infinity' to 200 so that they can be properly added.
     while(count <= 29):
         if count <= 15:
             if rover.laser_distances[count] != float('inf'):
@@ -125,7 +125,7 @@ def side_to_favour():
             else:
                 sumLeft += 200
         count += 1
-
+#return the side that has the lest obstacles (higher sum (further distances))
     if sumLeft > sumRight:
         return "left"
     if sumRight > sumLeft:
