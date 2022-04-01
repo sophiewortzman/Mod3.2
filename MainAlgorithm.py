@@ -193,7 +193,7 @@ def main():
             #print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
             #print("Actual Heading: " + str(rover.heading))
 
-        sleep(0.05)
+        sleep(0.1)
 
 if __name__ == "__main__":
     main()
