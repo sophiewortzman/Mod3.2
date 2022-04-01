@@ -125,7 +125,7 @@ def side_to_favour():
             else:
                 sumLeft += 200
         count += 1
-#return the side that has the lest obstacles (higher sum (further distances))
+#return the side that has the least obstacles (higher sum (further distances))
     if sumLeft > sumRight:
         return "left"
     if sumRight > sumLeft:
