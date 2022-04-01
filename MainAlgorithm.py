@@ -146,7 +146,7 @@ def side_to_favour():
 def main():  
     while not rospy.is_shutdown():
         
-        if (objectivex - 0.4 <= rover.x <= objectivex + 0.4) and (objectivey - 0.4 <= rover.y <= objectivey + 0.4):
+        if (objectivex - 0.5 <= rover.x <= objectivex + 0.5) and (objectivey - 0.5 <= rover.y <= objectivey + 0.5):
                 print("Destination Reached, Terminating Program...")
                 left_side_speed = 0
                 right_side_speed = 0
