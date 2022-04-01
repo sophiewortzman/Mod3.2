@@ -153,7 +153,7 @@ def main():
 
         for dist in rover.laser_distances:
             
-            if dist < 3:
+            if dist < 5:
                 whichWay = side_to_favour()
                 #print(whichWay)
 
@@ -167,14 +167,19 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
                     sleep(0.01)
                 
-            if dist > 6:
+            if dist > 8:
                 left_side_speed = 3
                 right_side_speed = 3
                 rover.send_command(left_side_speed, right_side_speed)
                 sleep(0.05)
                 tempHeading = find_heading(rover, objectivex, objectivey)
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
-                
+            
+            else:
+                left_side_speed = 3
+                right_side_speed = 3
+                rover.send_command(left_side_speed, right_side_speed)
+                sleep(0.05)
             #print("Temp Heading: " + str(find_heading(rover, objectivex, objectivey)))
             #print("Actual Heading: " + str(rover.heading))
 
