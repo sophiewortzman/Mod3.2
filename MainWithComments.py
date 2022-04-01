@@ -7,8 +7,8 @@ rover = Rover()
 rover.laser_distances = [0] * 30
 sum1 = 0
 sum2 = 0
-objectivex = 15 #Destination of the x-coordinate, which is the red axis in gazebo
-objectivey = 1 #Destination of the y-coordinate, which is the green axis in gazebo
+objectivex = 15 # Destination of the x-coordinate, which is the red axis in gazebo
+objectivey = 1 # Destination of the y-coordinate, which is the green axis in gazebo
 
 # Function to turn the rover left.
 def turn_left(rover, left_speed, right_speed):
@@ -29,7 +29,6 @@ def turn_right(rover, left_speed, right_speed):
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.4)
         break
-        
 
 # Function to find the new heading angle after the rover turns (returns heading angle).
 def find_heading(rover, objectivex, objectivey):
