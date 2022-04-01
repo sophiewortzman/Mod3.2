@@ -167,7 +167,7 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
                     sleep(0.01)
                 
-            if dist > 8:
+            if dist > 10:
                 left_side_speed = 3
                 right_side_speed = 3
                 rover.send_command(left_side_speed, right_side_speed)
