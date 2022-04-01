@@ -1,3 +1,4 @@
+# Importing libraries, objects and defining the destination in x and y.
 from qset_lib import Rover
 from time import sleep
 import rospy
@@ -9,17 +10,20 @@ sum2 = 0
 objectivex = 15 #x is the red in gazebo
 objectivey = 1 #y is green in gazebo
 
+# Function to turn the rover left.
 def turn_left(rover, left_speed, right_speed):
     while(1):
+        # Set the left speed to 0 and the right speed to 3 to turn the rover left.
         left_side_speed = 0
         right_side_speed = 3
         rover.send_command(left_side_speed, right_side_speed)
         sleep(0.4)
         break
-        
+
+# Function to turn the rover right.        
 def turn_right(rover, left_speed, right_speed):
-    
     while(1):
+        # Set the right speed to 0 and the left speed to 3 to turn the rover right.
         left_side_speed = 3
         right_side_speed = 0
         rover.send_command(left_side_speed, right_side_speed)
@@ -27,11 +31,13 @@ def turn_right(rover, left_speed, right_speed):
         break
         
 
-#call this to find the new heading angle after the rover turns (returns heading angle)
+# Function to find the new heading angle after the rover turns (returns heading angle).
 def find_heading(rover, objectivex, objectivey):
-
-    m = (objectivey-rover.y)/(objectivex-rover.x) #find the slope between the two points relative top the x-axis (0 degrees)
+    #Finds the slope between the two points relative to the x-axis (0 degrees).
+    m = (objectivey-rover.y)/(objectivex-rover.x) 
     
+    # Series of if-statements determining and returning the heading angle to the destination depending on the quadrant the rover is in
+    # and the direction to the destination (upper-left, upper-right, bottom-left, bottom-right).
     if(objectivey > 0) and (objectivex > 0): #Quadrant 1
         if (rover.y < objectivey) and (rover.x < objectivex): #1
             return (math.atan(m) * 180 / math.pi)
@@ -75,31 +81,33 @@ def find_heading(rover, objectivex, objectivey):
     else:
         return
 
+# Function to turn the rover towards the destination.
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
+    # If the rover is pointed towards the destination, go straight.
+    if (tempHeading+1>rover.heading>tempHeading-1):
+        left_side_speed = 4
+        right_side_speed = 4
+        rover.send_command(left_side_speed, right_side_speed)
+        print("Destination is straight ahead...\n")
+        sleep(0.1)
+        return
+    # If the rover needs to adjust left, turn left.
+    if (tempHeading>rover.heading>-179.99):
+        left_side_speed = 0
+        right_side_speed = 3
+        rover.send_command(left_side_speed, right_side_speed)
+        print("Turning left towards destination...\n")
+        sleep(0.1)
     
-            if (tempHeading+1>rover.heading>tempHeading-1):
-                left_side_speed = 4
-                right_side_speed = 4
-                rover.send_command(left_side_speed, right_side_speed)
-                print("Destination is straight ahead...\n")
-                sleep(0.1)
-                return
-
-            if (tempHeading>rover.heading>-179.99):
-                left_side_speed = 0
-                right_side_speed = 3
-                rover.send_command(left_side_speed, right_side_speed)
-                print("Turning left towards destination...\n")
-                sleep(0.1)
-
-            if (tempHeading<rover.heading<179.99):
-                left_side_speed = 3
-                right_side_speed = 0
-                rover.send_command(left_side_speed, right_side_speed)
-                print("Turning right towards destination...\n")
-                sleep(0.1)
+    # If the rover needs to adjust right, turn right.
+    if (tempHeading<rover.heading<179.99):
+        left_side_speed = 3
+        right_side_speed = 0
+        rover.send_command(left_side_speed, right_side_speed)
+        print("Turning right towards destination...\n")
+        sleep(0.1)
             
-#call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
+# Function to decide which side to turn when the rover to decide.
 def side_to_favour():
     sumRight = 0
     sumLeft = 0
@@ -125,12 +133,14 @@ def side_to_favour():
     else:
         return "NOT WORKING"       
 
-#The main function
+# The main function.
 def main():  
-     print("Destination in x: " + str(objectivex))
-     print("Destination in y: " + str(objectivey))
-    
+    # Print the final destination.
+    print("Destination in x: " + str(objectivex))
+    print("Destination in y: " + str(objectivey))
+    # Keep the going until the rover is shut down or the rover reaches its destination.
     while not rospy.is_shutdown():
+        # If the rover is right on or super close to its destination, stop the rover and terminate the program.
         if (objectivex - 0.8 <= rover.x <= objectivex + 0.8) and (objectivey - 0.8 <= rover.y <= objectivey + 0.8):
                 print("Destination reached, terminating program...\n")
                 left_side_speed = 0
@@ -139,6 +149,7 @@ def main():
                 return 0
 
         for dist in rover.laser_distances:
+            # If the rover is within 2 m of an obstacle, decide which way to turn and turn that way until the obstacle is no longer in the way.
             if dist < 2:
                 whichWay = side_to_favour()
                 if whichWay == "right":
@@ -151,7 +162,8 @@ def main():
                     turn_left(rover, left_side_speed, right_side_speed)
                     print("Finished turn!\n")
                     sleep(0.05)
-                
+            # Pick some LiDAR values and check if they all indicate the rover is 8 m from an obstacle. If the rover is, reset the heading to reach
+            # the destination.
             if ((rover.laser_distances[0] > 8) and
                (rover.laser_distances[3] > 8) and
                (rover.laser_distances[6] > 8) and
@@ -165,7 +177,7 @@ def main():
                 sleep(0.05)
                 tempHeading = find_heading(rover, objectivex, objectivey)
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
-            
+            # Otherwise, go straight.
             else:
                 left_side_speed = 3
                 right_side_speed = 3
