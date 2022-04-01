@@ -145,7 +145,7 @@ def main():
     while not rospy.is_shutdown():
         
         if (objectivex - 0.8 <= rover.x <= objectivex + 0.8) and (objectivey - 0.8 <= rover.y <= objectivey + 0.8):
-                print("Destination reached, terminating program...")
+                print("Destination reached, terminating program...\n")
                 left_side_speed = 0
                 right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
