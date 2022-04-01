@@ -10,33 +10,26 @@ objectivex = 15 #x is the red in gazebo
 objectivey = 1 #y is green in gazebo
 
 def turn_left(rover, left_speed, right_speed):
-    temp = rover.heading
+    
     while(1):
         left_side_speed = -1
         right_side_speed = 1
         rover.send_command(left_side_speed, right_side_speed)
-        # Here is where you would place the desired heading variable.
-        if rover.heading > temp + 90:
-            left_side_speed = 0
-            right_side_speed = 0
-            rover.send_command(left_side_speed, right_side_speed)
+        sleep(0.4)
         #print("Speed: " + left_side_speed)
         break
-        sleep(0.3)
+        
         
 def turn_right(rover, left_speed, right_speed):
-  temp = rover.heading
-  while(1):
-      left_side_speed = 1
-      right_side_speed = -1
-      rover.send_command(left_side_speed, right_side_speed)
-      # Here is where you would place the desired heading variable.
-      if rover.heading < temp - 90:
-          left_side_speed = 0
-          right_side_speed = 0
-          rover.send_command(left_side_speed, right_side_speed)
-      break
-  sleep(0.3)
+    
+    while(1):
+        left_side_speed = 1
+        right_side_speed = -1
+        rover.send_command(left_side_speed, right_side_speed)
+        sleep(0.4)
+        #print("Speed: " + right_side_speed)
+        break
+        
 
 #call this to find the new heading angle after the rover turns (returns heading angle)
 def find_heading(rover, objectivex, objectivey):
@@ -87,26 +80,26 @@ def find_heading(rover, objectivex, objectivey):
         return
 
 def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
+    
+            if (tempHeading+1>rover.heading>tempHeading-1):
+                #if rover.heading == range(lowerBound, upperBound):
+                left_side_speed = 4
+                right_side_speed = 4
+                rover.send_command(left_side_speed, right_side_speed)
+                sleep(0.1)
+                return
 
-        if (tempHeading+1>rover.heading>tempHeading-1):
-            #if rover.heading == range(lowerBound, upperBound):
-            left_side_speed = 4
-            right_side_speed = 4
-            rover.send_command(left_side_speed, right_side_speed)
-            sleep(0.1)
-            return
+            if (tempHeading>rover.heading>-179.99):
+                left_side_speed = -1
+                right_side_speed = 1
+                rover.send_command(left_side_speed, right_side_speed)
+                sleep(0.1)
 
-        if (tempHeading>rover.heading>-179.99):
-            left_side_speed = -1
-            right_side_speed = 1
-            rover.send_command(left_side_speed, right_side_speed)
-            sleep(0.1)
-               
-        if (tempHeading<rover.heading<179.99):
-            left_side_speed = 1
-            right_side_speed = -1
-            rover.send_command(left_side_speed, right_side_speed)
-            sleep(0.1)
+            if (tempHeading<rover.heading<179.99):
+                left_side_speed = 1
+                right_side_speed = -1
+                rover.send_command(left_side_speed, right_side_speed)
+                sleep(0.1)
             
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
 def side_to_favour():
@@ -142,16 +135,13 @@ def side_to_favour():
     if sumRight > sumLeft:
         return "right"
 
-    if sumRight == sumLeft:
-        print("equal")
-
     else:
         return "NOT WORKING"       
 
 def main():  
     while not rospy.is_shutdown():
         
-        if (objectivex - 0.4 <= rover.x <= objectivex + 0.4) and (objectivey - 0.4 <= rover.y <= objectivey + 0.4):
+        if (objectivex - 0.8 <= rover.x <= objectivex + 0.8) and (objectivey - 0.8 <= rover.y <= objectivey + 0.8):
                 print("Destination Reached, Terminating Program...")
                 left_side_speed = 0
                 right_side_speed = 0
@@ -162,12 +152,11 @@ def main():
         right_side_speed = 3
         rover.send_command(left_side_speed, right_side_speed)
         
-        
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         print (rover.laser_distances)
 
         for dist in rover.laser_distances:
-
+            
             if dist < 2:
                 whichWay = side_to_favour()
                 #print(whichWay)
@@ -175,12 +164,18 @@ def main():
                 if whichWay == "right":
                     print(whichWay)
                     turn_right(rover, left_side_speed, right_side_speed)
+                    sleep(0.01)
                        
                 if whichWay == "left":
                     print(whichWay)
                     turn_left(rover, left_side_speed, right_side_speed)
-
+                    sleep(0.01)
+                
             if dist > 5:
+                left_side_speed = 3
+                right_side_speed = 3
+                rover.send_command(left_side_speed, right_side_speed)
+                sleep(0.1)
                 tempHeading = find_heading(rover, objectivex, objectivey)
                 reset_heading(rover, left_side_speed, right_side_speed, tempHeading)
 
