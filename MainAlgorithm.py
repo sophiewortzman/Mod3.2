@@ -145,7 +145,7 @@ def main():
                or rover.laser_distances[0] < 1.1 or rover.laser_distances[2] < 1.1 or rover.laser_distances[4] < 1.1 or rover.laser_distances[6] < 1.1
                or rover.laser_distances[8] < 1.1 or rover.laser_distances[10] < 1.1 or rover.laser_distances[12] < 1.1 or rover.laser_distances[18] < 1.1
                or rover.laser_distances[20] < 1.1 or rover.laser_distances[22] < 1.1 or rover.laser_distances[24] < 1.1 or rover.laser_distances[26] < 1.1
-               or rover.laser_distances[28] < 1.1)
+               or rover.laser_distances[28] < 1.1):
                 
                 whichWay = side_to_favour()
                 if whichWay == "right":
