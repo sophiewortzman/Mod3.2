@@ -86,7 +86,7 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
                 left_side_speed = 4
                 right_side_speed = 4
                 rover.send_command(left_side_speed, right_side_speed)
-                print("Destination is straight ahead...")
+                print("Destination is straight ahead...\n")
                 sleep(0.1)
                 return
 
@@ -94,14 +94,14 @@ def reset_heading(rover, left_side_speed, right_side_speed, tempHeading):
                 left_side_speed = 0
                 right_side_speed = 3
                 rover.send_command(left_side_speed, right_side_speed)
-                print("Turning left towards destination...")
+                print("Turning left towards destination...\n")
                 sleep(0.1)
 
             if (tempHeading<rover.heading<179.99):
                 left_side_speed = 3
                 right_side_speed = 0
                 rover.send_command(left_side_speed, right_side_speed)
-                print("Turning right towards destination...")
+                print("Turning right towards destination...\n")
                 sleep(0.1)
             
 #call this before obstacle avoidance to find which way is the best to turn (returns "left" or "right")
@@ -162,13 +162,15 @@ def main():
                 #print(whichWay)
 
                 if whichWay == "right":
-                    print("Turning " + whichWay + "...")
+                    print("Turning " + whichWay + "...\n")
                     turn_right(rover, left_side_speed, right_side_speed)
+                    print("Finished turn!\n")
                     sleep(0.05)
                        
                 if whichWay == "left":
-                    print("Turning " + whichWay + "...")
+                    print("Turning " + whichWay + "...\n")
                     turn_left(rover, left_side_speed, right_side_speed)
+                    print("Finished turn!\n")
                     sleep(0.05)
                 
             if ((rover.laser_distances[0] > 8) and
