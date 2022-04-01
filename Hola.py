@@ -161,7 +161,7 @@ def main():
 
         for dist in rover.laser_distances:
             
-            if dist < 2:
+            if rover.laser_distances[13] < 2 or rover.laser_distances[14] < 2 or rover.laser_distances[15] < 2 or rover.laser_distances[16] < 2:
                 whichWay = side_to_favour()
                 #print(whichWay)
 
