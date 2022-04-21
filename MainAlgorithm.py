@@ -148,7 +148,7 @@ def main():
                 return 0
 
         for dist in rover.laser_distances:
-            # If the rover is within 4 m of an obstacle in front, decide which way to turn and turn that way until the obstacle is no longer in the way.
+            # If the rover is within 4 m of an obstacle in front (or 1.2 m on the sides), decide which way to turn and turn that way until the obstacle is no longer in the way.
             if (rover.laser_distances[13] < 4 or rover.laser_distances[14] < 4 or rover.laser_distances[15] < 4 or rover.laser_distances[16] < 4
                or rover.laser_distances[0] < 1.2 or rover.laser_distances[2] < 1.2 or rover.laser_distances[4] < 1.2 or rover.laser_distances[6] < 1.2
                or rover.laser_distances[8] < 1.2 or rover.laser_distances[10] < 1.2 or rover.laser_distances[12] < 1.2 or rover.laser_distances[18] < 1.2
